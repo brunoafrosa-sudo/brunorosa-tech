@@ -12,6 +12,9 @@
     <meta property="og:locale" content="pt_BR">
     <title>Bruno Rosa | Líder de Tecnologia & Engineering Manager</title>
     
+    <!-- Cookie Consent -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css">
+
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -352,5 +355,68 @@
         </svg>
         <span class="sr-only">Contato por WhatsApp</span>
     </a>
+    <!-- Cookie Consent Init -->
+    <script type="module">
+        import 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js';
+
+        CookieConsent.run({
+            guiOptions: {
+                consentModal: {
+                    layout: 'classic',
+                    position: 'bottom'
+                },
+                preferencesModal: {
+                    layout: 'classic'
+                }
+            },
+            categories: {
+                necessary: {
+                    enabled: true,
+                    readOnly: true
+                },
+                analytics: {}
+            },
+            language: {
+                default: 'pt',
+                translations: {
+                    pt: {
+                        consentModal: {
+                            title: 'Utilizamos cookies',
+                            description: 'Este site usa cookies para melhorar sua experiência de navegação. Você pode aceitar todos os cookies ou personalizar suas preferências.',
+                            acceptAllBtn: 'Aceitar todos',
+                            acceptNecessaryBtn: 'Somente necessários',
+                            showPreferencesBtn: 'Personalizar'
+                        },
+                        preferencesModal: {
+                            title: 'Preferências de cookies',
+                            acceptAllBtn: 'Aceitar todos',
+                            acceptNecessaryBtn: 'Somente necessários',
+                            savePreferencesBtn: 'Salvar preferências',
+                            closeIconLabel: 'Fechar',
+                            sections: [
+                                {
+                                    title: 'Cookies necessários',
+                                    description: 'Estes cookies são essenciais para o funcionamento correto do site e não podem ser desativados.',
+                                    linkedCategory: 'necessary'
+                                },
+                                {
+                                    title: 'Cookies de análise',
+                                    description: 'Estes cookies nos ajudam a entender como os visitantes interagem com o site, coletando informações de forma anônima.',
+                                    linkedCategory: 'analytics'
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        });
+
+        document.documentElement.style.setProperty('--cc-btn-primary-bg', '#104D5E');
+        document.documentElement.style.setProperty('--cc-btn-primary-hover-bg', '#0d3f4d');
+        document.documentElement.style.setProperty('--cc-btn-primary-border-color', '#104D5E');
+        document.documentElement.style.setProperty('--cc-btn-primary-hover-border-color', '#0d3f4d');
+        document.documentElement.style.setProperty('--cc-toggle-on-bg', '#104D5E');
+        document.documentElement.style.setProperty('--cc-link-color', '#104D5E');
+    </script>
 </body>
 </html>
