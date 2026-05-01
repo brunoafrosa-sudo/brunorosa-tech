@@ -1,0 +1,137 @@
+/* Custom Styles & Animations - Elis Fonseca Psicóloga */
+
+/* ── Cookie Consent (LGPD) ── */
+:root {
+    --cc-bg: #F5EFE6;
+    --cc-primary-color: #5C3D2E;
+    --cc-secondary-color: #7a6552;
+    --cc-btn-primary-bg: #B8A07E;
+    --cc-btn-primary-color: #fff;
+    --cc-btn-primary-hover-bg: #9e8a6a;
+    --cc-btn-secondary-bg: transparent;
+    --cc-btn-secondary-color: #5C3D2E;
+    --cc-btn-secondary-border-color: #B8A07E;
+    --cc-btn-secondary-hover-bg: #ede3d6;
+    --cc-separator-border-color: #d9cbbe;
+    --cc-cookie-category-block-bg: #ede3d6;
+    --cc-cookie-category-block-border: #d9cbbe;
+    --cc-overlay-bg: rgba(0,0,0,.35);
+    --cc-modal-border-radius: 0;
+    --cc-btn-border-radius: 4px;
+    --cc-font-family: inherit;
+}
+
+/* ── Scroll Reveal System ── */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Delays */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* ── Navbar Glass Effect on Scroll ── */
+header.scrolled {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    background-color: rgba(249, 245, 240, 0.95);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* ── Custom Utilities ── */
+.text-balance {
+    text-wrap: balance;
+}
+
+/* ── Smooth Anchor Hover ── */
+nav a {
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #7D6B5D; /* New Primary Earth Tone */
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* ── Animation: Pulse sutil para elementos de destaque ── */
+@keyframes soft-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.animate-soft-pulse {
+    animation: soft-pulse 3s ease-in-out infinite;
+}
+
+/* ── Icon Fallbacks ── */
+[data-lucide] {
+    display: inline-block;
+    min-width: 1em;
+    min-height: 1em;
+}
+
+svg.lucide {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 24px;
+    max-height: 24px;
+}
+
+/* ── Form Styles ── */
+.form-input {
+    width: 100%;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.75rem;
+    padding: 0.875rem 1.25rem;
+    outline: none;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+}
+
+.form-input:focus {
+    border-color: #7D6B5D;
+    box-shadow: 0 0 0 4px rgba(125, 107, 93, 0.05);
+    background-color: white;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #7D6B5D;
+    margin-bottom: 0.5rem;
+    margin-left: 0.25rem;
+}
+
+/* ── Mobile Menu Correction ── */
+#mobile-menu {
+    background-color: #F9F5F0 !important;
+}
+
+/* ── Textos Justificados ── */
+p {
+    text-align: justify;
+}
