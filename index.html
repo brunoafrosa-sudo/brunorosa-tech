@@ -15,14 +15,11 @@
     <meta property="og:locale" content="pt_BR">
     <title>Bruno Rosa | Desenvolvimento Web & Consultoria Digital</title>
 
-    <!-- Cookie Consent -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css">
-
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts: Inter — non-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 
     <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -248,15 +245,6 @@
             })();
     </script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-870551362"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'AW-870551362');
-    </script>
 </head>
 
 <body class="bg-navy-900 text-gray-300 font-sans antialiased selection:bg-turquoise-500 selection:text-white">
@@ -1111,19 +1099,13 @@
         <span class="sr-only">Contato por WhatsApp</span>
     </a>
 
-    <!-- Scripts -->
+    <!-- Scripts críticos: tema + header + FAQ (inline, síncrono) -->
     <script>
         // ── Dark/Light Mode Toggle ──────────────────────────────────────────
         function applyTheme(isDark) {
-            if (isDark) {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-            }
+            document.documentElement.classList.toggle('dark', isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
         }
-
         document.getElementById('theme-toggle').addEventListener('click', function () {
             applyTheme(!document.documentElement.classList.contains('dark'));
         });
@@ -1132,87 +1114,109 @@
         });
 
         // ── Sticky Header Compacto ao Rolar ────────────────────────────────
-        const header = document.getElementById('main-header');
-        const headerInner = document.getElementById('header-inner');
-
+        var _header = document.getElementById('main-header');
+        var _headerInner = document.getElementById('header-inner');
         window.addEventListener('scroll', function () {
-            if (window.scrollY > 60) {
-                header.classList.add('scrolled');
-                headerInner.classList.remove('h-20');
-                headerInner.classList.add('h-14');
-            } else {
-                header.classList.remove('scrolled');
-                headerInner.classList.remove('h-14');
-                headerInner.classList.add('h-20');
-            }
+            var scrolled = window.scrollY > 60;
+            _header.classList.toggle('scrolled', scrolled);
+            _headerInner.classList.toggle('h-14', scrolled);
+            _headerInner.classList.toggle('h-20', !scrolled);
         }, { passive: true });
 
         // ── FAQ Accordion ───────────────────────────────────────────────────
         function toggleFaq(trigger) {
-            const item = trigger.closest('.faq-item');
-            const answer = item.querySelector('.faq-answer');
-            const isOpen = item.classList.contains('open');
-
-            // Fechar todos
+            var item = trigger.closest('.faq-item');
+            var isOpen = item.classList.contains('open');
             document.querySelectorAll('.faq-item.open').forEach(function (el) {
                 el.classList.remove('open');
                 el.querySelector('.faq-answer').classList.remove('open');
             });
-
-            // Abrir o clicado se estava fechado
             if (!isOpen) {
                 item.classList.add('open');
-                answer.classList.add('open');
+                item.querySelector('.faq-answer').classList.add('open');
             }
         }
     </script>
 
-    <!-- Cookie Consent Init -->
-    <script type="module">
-        import 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js';
+    <!-- Scripts de terceiros: carregados após primeira interação (scroll/click/touch) -->
+    <script>
+        var _thirdPartyLoaded = false;
+        function loadThirdParty() {
+            if (_thirdPartyLoaded) return;
+            _thirdPartyLoaded = true;
 
-        CookieConsent.run({
-            guiOptions: {
-                consentModal: { layout: 'classic', position: 'bottom' },
-                preferencesModal: { layout: 'classic' }
-            },
-            categories: {
-                necessary: { enabled: true, readOnly: true },
-                analytics: {}
-            },
-            language: {
-                default: 'pt',
-                translations: {
-                    pt: {
-                        consentModal: {
-                            title: 'Utilizamos cookies',
-                            description: 'Este site usa cookies para melhorar sua experiência de navegação. Você pode aceitar todos os cookies ou personalizar suas preferências.',
-                            acceptAllBtn: 'Aceitar todos',
-                            acceptNecessaryBtn: 'Somente necessários',
-                            showPreferencesBtn: 'Personalizar'
-                        },
-                        preferencesModal: {
-                            title: 'Preferências de cookies',
-                            acceptAllBtn: 'Aceitar todos',
-                            acceptNecessaryBtn: 'Somente necessários',
-                            savePreferencesBtn: 'Salvar preferências',
-                            closeIconLabel: 'Fechar',
-                            sections: [
-                                { title: 'Cookies necessários', description: 'Estes cookies são essenciais para o funcionamento correto do site e não podem ser desativados.', linkedCategory: 'necessary' },
-                                { title: 'Cookies de análise', description: 'Estes cookies nos ajudam a entender como os visitantes interagem com o site, coletando informações de forma anônima.', linkedCategory: 'analytics' }
-                            ]
+            // Google Analytics / Ads (gtag)
+            var ga = document.createElement('script');
+            ga.async = true;
+            ga.src = 'https://www.googletagmanager.com/gtag/js?id=AW-870551362';
+            document.head.appendChild(ga);
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', 'AW-870551362');
+
+            // Cookie Consent CSS + JS
+            var ccCss = document.createElement('link');
+            ccCss.rel = 'stylesheet';
+            ccCss.href = 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css';
+            document.head.appendChild(ccCss);
+
+            import('https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js').then(function () {
+                CookieConsent.run({
+                    guiOptions: {
+                        consentModal: { layout: 'classic', position: 'bottom' },
+                        preferencesModal: { layout: 'classic' }
+                    },
+                    categories: {
+                        necessary: { enabled: true, readOnly: true },
+                        analytics: {}
+                    },
+                    language: {
+                        default: 'pt',
+                        translations: {
+                            pt: {
+                                consentModal: {
+                                    title: 'Utilizamos cookies',
+                                    description: 'Este site usa cookies para melhorar sua experiência de navegação. Você pode aceitar todos os cookies ou personalizar suas preferências.',
+                                    acceptAllBtn: 'Aceitar todos',
+                                    acceptNecessaryBtn: 'Somente necessários',
+                                    showPreferencesBtn: 'Personalizar'
+                                },
+                                preferencesModal: {
+                                    title: 'Preferências de cookies',
+                                    acceptAllBtn: 'Aceitar todos',
+                                    acceptNecessaryBtn: 'Somente necessários',
+                                    savePreferencesBtn: 'Salvar preferências',
+                                    closeIconLabel: 'Fechar',
+                                    sections: [
+                                        { title: 'Cookies necessários', description: 'Estes cookies são essenciais para o funcionamento correto do site e não podem ser desativados.', linkedCategory: 'necessary' },
+                                        { title: 'Cookies de análise', description: 'Estes cookies nos ajudam a entender como os visitantes interagem com o site, coletando informações de forma anônima.', linkedCategory: 'analytics' }
+                                    ]
+                                }
+                            }
                         }
                     }
-                }
-            }
-        });
+                });
+                var s = document.documentElement.style;
+                s.setProperty('--cc-btn-primary-bg', '#104D5E');
+                s.setProperty('--cc-btn-primary-hover-bg', '#0d3f4d');
+                s.setProperty('--cc-btn-primary-border-color', '#104D5E');
+                s.setProperty('--cc-btn-primary-hover-border-color', '#0d3f4d');
+                s.setProperty('--cc-toggle-on-bg', '#104D5E');
+                s.setProperty('--cc-link-color', '#104D5E');
+            });
+        }
 
-        document.documentElement.style.setProperty('--cc-btn-primary-bg', '#104D5E');
-        document.documentElement.style.setProperty('--cc-btn-primary-hover-bg', '#0d3f4d');
-        document.documentElement.style.setProperty('--cc-btn-primary-border-color', '#104D5E');
-        document.documentElement.style.setProperty('--cc-btn-primary-hover-border-color', '#0d3f4d');
-        document.documentElement.style.setProperty('--cc-toggle-on-bg', '#104D5E');
-        document.documentElement.style.setProperty('--cc-link-color', '#104D5E');
+        // Disparar na primeira interação ou após 5s de idle (requestIdleCallback fallback)
+        ['scroll', 'click', 'keydown', 'touchstart', 'mousemove'].forEach(function (evt) {
+            window.addEventListener(evt, loadThirdParty, { once: true, passive: true });
+        });
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(loadThirdParty, { timeout: 5000 });
+        } else {
+            setTimeout(loadThirdParty, 5000);
+        }
     </script>
 </body>
 
