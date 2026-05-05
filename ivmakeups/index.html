@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ── SEO ── -->
+    <title>IV Makeups | Maquiadora em Contagem MG — Especialista em Maquiagem Social, Noivas e Editorial</title>
+    <meta name="description"
+        content="Maquiadora profissional em Contagem MG. Especialista em maquiagem social, noivas, editorial e audiovisual. Formada em Paris 🇫🇷. Agende seu horário!" />
+    <meta name="keywords"
+        content="maquiadora em Contagem MG, maquiagem social, maquiagem para noivas, maquiagem editorial, masterclass maquiagem, maquiadora Contagem, IV Makeups" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://brunorosa.tech/ivmakeups/" />
+
+    <!-- ── Open Graph ── -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="IV Makeups | Maquiadora em Contagem MG" />
+    <meta property="og:description"
+        content="Reafirmando belezas através da naturalidade. Especialista em maquiagem social, noivas e audiovisual em Contagem MG." />
+    <meta property="og:url" content="https://brunorosa.tech/ivmakeups/" />
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- ── Schema.org ── -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BeautyBusiness",
+        "name": "IV Makeups",
+        "description": "Maquiadora profissional em Contagem MG especializada em maquiagem social, noivas, editorial e audiovisual.",
+        "url": "https://brunorosa.tech/ivmakeups/",
+        "telephone": "553198804988",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Contagem",
+            "addressRegion": "MG",
+            "addressCountry": "BR"
+        },
+        "sameAs": ["https://www.instagram.com/ivmakeups/"],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Serviços de Maquiagem",
+            "itemListElement": [
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Maquiagem Social" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Masterclass Essence of Beauty" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Editorial e Audiovisual" } }
+            ]
+        }
+    }
+    </script>
+
+    <!-- ── Google Fonts ── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <!-- ── Tailwind CSS ── -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        nude: '#F5E6D8',
+                        'nude-dk': '#E8C4A8',
+                        rose: '#C9956C',
+                        'rose-dk': '#B8784A',
+                        ivory: '#FAF7F4',
+                        charcoal: '#1A1A1A',
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                        sans: ['Montserrat', 'ui-sans-serif', 'system-ui'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- ── Custom CSS ── -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="font-sans bg-ivory text-charcoal antialiased">
+
+    <!-- ═══════════════════════════════════════
+     HEADER / NAV
+════════════════════════════════════════ -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-5 px-6 lg:px-12">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+
+            <!-- Logo / Nome -->
+            <a href="#inicio" class="flex items-center gap-2 no-underline">
+                <span class="font-serif text-xl font-bold text-charcoal tracking-wide">IV <span
+                        class="gradient-text">Makeups</span></span>
+            </a>
+
+            <!-- Nav Desktop -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-charcoal/80">
+                <a href="#sobre" class="hover:text-rose transition-colors">Sobre</a>
+                <a href="#servicos" class="hover:text-rose transition-colors">Serviços</a>
+                <a href="#galeria" class="hover:text-rose transition-colors">Galeria</a>
+                <a href="#depoimentos" class="hover:text-rose transition-colors">Depoimentos</a>
+                <a href="#contato" class="hover:text-rose transition-colors">Contato</a>
+            </nav>
+
+            <!-- CTA Desktop -->
+            <a href="https://wa.me/553198804988?text=Olá!%20Gostaria%20de%20agendar%20um%20atendimento%20🌸"
+                target="_blank" rel="noopener" class="hidden md:flex btn-primary text-sm">
+                <i data-lucide="calendar-check" class="w-4 h-4"></i>
+                Agendar Horário
+            </a>
+
+            <!-- Hamburger -->
+            <button id="mobile-menu-btn" aria-label="Abrir menu"
+                class="md:hidden p-2 rounded-lg hover:bg-nude transition-colors">
+                <i data-lucide="menu" class="w-6 h-6 text-charcoal"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+        class="fixed inset-0 z-40 opacity-0 pointer-events-none -translate-y-4 transition-all duration-300 flex flex-col"
+        aria-hidden="true">
+        <div class="flex items-center justify-between px-6 py-5 border-b border-nude-dk/30">
+            <span class="font-serif text-xl font-bold">IV <span class="gradient-text">Makeups</span></span>
+            <button id="close-menu-btn" aria-label="Fechar menu" class="p-2">
+                <i data-lucide="x" class="w-6 h-6 text-charcoal"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col gap-1 px-6 pt-6 pb-8 flex-1">
+            <a href="#sobre"
+                class="mobile-link py-3 text-lg font-medium border-b border-nude/60 hover:text-rose transition-colors">Sobre</a>
+            <a href="#servicos"
+                class="mobile-link py-3 text-lg font-medium border-b border-nude/60 hover:text-rose transition-colors">Serviços</a>
+            <a href="#galeria"
+                class="mobile-link py-3 text-lg font-medium border-b border-nude/60 hover:text-rose transition-colors">Galeria</a>
+            <a href="#depoimentos"
+                class="mobile-link py-3 text-lg font-medium border-b border-nude/60 hover:text-rose transition-colors">Depoimentos</a>
+            <a href="#contato"
+                class="mobile-link py-3 text-lg font-medium hover:text-rose transition-colors">Contato</a>
+            <a href="https://wa.me/553198804988?text=Olá!%20Gostaria%20de%20agendar%20um%20atendimento%20🌸"
+                target="_blank" rel="noopener" class="mobile-link mt-6 btn-primary justify-center">
+                <i data-lucide="calendar-check" class="w-4 h-4"></i>
+                Agendar Horário
+            </a>
+        </nav>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+    <section id="inicio" class="relative min-h-screen flex items-center overflow-hidden bg-nude/30">
+
+        <!-- Background image placeholder -->
+        <div class="absolute inset-0 z-0">
+            <img src="assets/hero-bg.jpg" alt="Maquiagem artística por IV Makeups — Contagem MG"
+                class="w-full h-full object-cover object-center" onerror="this.style.display='none'" />
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+
+        <!-- Conteúdo -->
+        <div class="relative z-10 max-w-6xl mx-auto px-6 lg:px-12 pt-28 pb-20 lg:pt-36 lg:pb-28">
+            <div class="max-w-2xl">
+
+                <!-- Selos de autoridade -->
+                <div class="flex flex-wrap gap-2 mb-8 reveal">
+                    <span class="seal">🇫🇷 Formada em Paris</span>
+                    <span class="seal">🎬 Especialista Audiovisual & Social</span>
+                </div>
+
+                <!-- Título -->
+                <h1
+                    class="font-serif text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-charcoal mb-6 reveal delay-100 text-balance">
+                    Reafirmando<br />
+                    <span class="italic gradient-text">belezas</span> através<br />
+                    da naturalidade
+                </h1>
+
+                <!-- Subtítulo -->
+                <p class="text-lg md:text-xl text-charcoal/70 font-light mb-10 max-w-lg reveal delay-200">
+                    Maquiagem que realça o que você já tem de mais especial.
+                    Atendimento em Contagem — MG com técnicas internacionais.
+                </p>
+
+                <!-- CTAs -->
+                <div class="flex flex-col sm:flex-row gap-4 reveal delay-300">
+                    <a href="https://wa.me/553198804988?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20meu%20atendimento%20🌸"
+                        target="_blank" rel="noopener" class="btn-primary pulse-cta text-base">
+                        <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                        Agendar Meu Horário
+                    </a>
+                    <a href="#servicos" class="btn-outline text-base">
+                        Ver Serviços
+                        <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div
+            class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-60 reveal delay-500">
+            <span class="text-xs tracking-widest uppercase text-charcoal/50">Role</span>
+            <i data-lucide="chevrons-down" class="w-5 h-5 text-rose animate-bounce"></i>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+     SOBRE
+════════════════════════════════════════ -->
+    <section id="sobre" class="py-24 px-6 lg:px-12 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+                <!-- Imagem -->
+                <div class="relative reveal">
+                    <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-nude">
+                        <img src="assets/foto-profissional.jpg"
+                            alt="IV Makeups — Maquiadora profissional em Contagem MG"
+                            class="w-full h-full object-cover object-top"
+                            onerror="this.parentElement.style.background='linear-gradient(135deg,#F5E6D8,#E8C4A8)'" />
+                    </div>
+                    <!-- Detalhe decorativo -->
+                    <div class="absolute -bottom-6 -right-6 w-40 h-40 rounded-2xl bg-nude-dk/30 -z-10"></div>
+                    <div class="absolute -top-6 -left-6 w-24 h-24 rounded-full bg-rose/10 -z-10"></div>
+                </div>
+
+                <!-- Texto -->
+                <div>
+                    <div class="section-divider mb-0 ml-0" style="margin-left:0"></div>
+                    <p class="text-xs font-bold uppercase tracking-widest text-rose mb-3 reveal">Sobre Mim</p>
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-charcoal mb-6 reveal delay-100">
+                        Arte e técnica<br /> a serviço da<br />
+                        <span class="italic gradient-text">sua beleza</span>
+                    </h2>
+
+                    <div class="space-y-4 text-charcoal/70 leading-relaxed reveal delay-200 text-justify">
+                        <p>
+                            Olá sou Iandra Vilaça, engenheira química de formação, graduada em 2020. Trabalhei por 7
+                            longos anos na minha área, mas em 2019 decidi mudar minha vida e me encontrei na maquiagem.
+                            Comecei a atender no meu próprio quarto, cobrando um valor simbólico para minhas amigas,
+                            movida apenas por um curso básico e um grande sonho.
+                        </p>
+                        <p>
+                            Desde então, venho estudando, me especializando e evoluindo constantemente minha técnica e
+                            visão. Nessa jornada, me apaixonei por um novo mundo: o de campanhas, moda e audiovisual —
+                            um universo cada dia mais presente que encanta imensamente meu coração.
+                        </p>
+                        <p>
+                            Realizei minha primeira especialização internacional em Paris, um dos meus maiores sonhos.
+                            Todo o estudo, dedicação e trabalho árduo foram para alcançar este nível de acabamento e
+                            poder dizer: eu amo infinitamente o que faço. Muito prazer e seja bem-vinda ao meu mundo!
+                        </p>
+                    </div>
+
+                    <!-- Especialidades -->
+                    <div class="grid grid-cols-2 gap-4 mt-8 reveal delay-300">
+                        <div class="flex items-start gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-nude flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i data-lucide="sparkles" class="w-4 h-4 text-rose"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-sm">Maquiagem Social</p>
+                                <p class="text-xs text-charcoal/60 mt-0.5">Festas & eventos</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-nude flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i data-lucide="heart" class="w-4 h-4 text-rose"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-sm">Noivas</p>
+                                <p class="text-xs text-charcoal/60 mt-0.5">Beauty day completo</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-nude flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i data-lucide="camera" class="w-4 h-4 text-rose"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-sm">Editorial</p>
+                                <p class="text-xs text-charcoal/60 mt-0.5">Fotos & vídeos</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-nude flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i data-lucide="graduation-cap" class="w-4 h-4 text-rose"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-sm">Masterclass</p>
+                                <p class="text-xs text-charcoal/60 mt-0.5">Essence of Beauty</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#contato" class="mt-10 btn-primary inline-flex reveal delay-400">
+                        Fale Comigo
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+     SERVIÇOS
+════════════════════════════════════════ -->
+    <section id="servicos" class="py-24 px-6 lg:px-12 bg-ivory">
+        <div class="max-w-6xl mx-auto">
+
+            <!-- Cabeçalho -->
+            <div class="text-center max-w-xl mx-auto mb-16">
+                <p class="text-xs font-bold uppercase tracking-widest text-rose mb-3 reveal">O que ofereço</p>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-charcoal mb-4 reveal delay-100">
+                    Serviços <span class="italic gradient-text">exclusivos</span>
+                </h2>
+                <p class="text-charcoal/60 reveal delay-200">
+                    Cada serviço é uma experiência personalizada — do preparo da pele ao toque final.
+                </p>
+            </div>
+
+            <!-- Cards -->
+            <div class="grid md:grid-cols-3 gap-8">
+
+                <!-- Card 1 -->
+                <div class="service-card p-8 text-center reveal">
+                    <div class="icon-wrap">
+                        <i data-lucide="sparkles" class="w-7 h-7 text-rose-dk"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-charcoal mb-3">Agendamentos &amp;<br />Produções
+                        Sociais</h3>
+                    <p class="text-sm text-charcoal/60 leading-relaxed mb-6 text-justify">
+                        Maquiagem para festas, casamentos, formaturas e eventos especiais. Realce natural que dura da
+                        cerimônia até a última dança.
+                    </p>
+                    <ul class="text-xs text-charcoal/50 space-y-2 text-left mb-8">
+                        <li class="flex items-center gap-2"><i data-lucide="check"
+                                class="w-3.5 h-3.5 text-rose flex-shrink-0"></i> Pré-preparo de pele incluso</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check"
+                                class="w-3.5 h-3.5 text-rose flex-shrink-0"></i> Produtos de longa duração</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check"
+                                class="w-3.5 h-3.5 text-rose flex-shrink-0"></i> Atendimento personalizado</li>
+                    </ul>
+                    <a href="https://wa.me/553198804988?text=Olá!%20Tenho%20interesse%20em%20Maquiagem%20Social%20🌸"
+                        target="_blank" rel="noopener" class="btn-outline text-sm w-full justify-center">
+                        Consultar Preço
+                    </a>
+                </div>
+
+                <!-- Card 2 — Destaque -->
+                <div class="service-card p-8 text-center relative reveal delay-100 border-rose/40"
+                    style="background: linear-gradient(160deg, #FAF7F4 0%, #FDF0E7 100%);">
+                    <!-- Badge popular -->
+                    <span
+                        class="absolute -top-4 left-1/2 -translate-x-1/2 bg-rose text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full shadow-md">
+                        Mais Procurado
+                    </span>
+                    <div class="icon-wrap" style="background: linear-gradient(135deg, #C9956C, #B8784A);">
+                        <i data-lucide="graduation-cap" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-charcoal mb-3">Masterclass<br />Essence of Beauty</h3>
+                    <p class="text-sm text-charcoal/60 leading-relaxed mb-6 text-justify">
+                        Aprenda as técnicas que uso nos bastidores. Aulas exclusivas para quem quer dominar a maquiagem
+                        — do básico ao editorial.
+                    </p>
+                    <ul class="text-xs text-charcoal/50 space-y-2 text-left mb-8">
+                        <li class="flex items-center gap-2"><i data-lucide="check"
+                                class="w-3.5 h-3.5 text-rose flex-shrink-0"></i> Técnicas internacionais</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check"
+                                class="w-3.5 h-3.5 text-rose flex-shrink-0"></i> Material prático incluso</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check"
+                                class="w-3.5 h-3.5 text-rose flex-shrink-0"></i> Certificado de participação</li>
+                    </ul>
+                    <a href="https://wa.me/553198804988?text=Olá!%20Tenho%20interesse%20na%20Masterclass%20Essence%20of%20Beauty%20🌸"
+                        target="_blank" rel="noopener" class="btn-primary text-sm w-full justify-center">
+                        Quero Participar
+                    </a>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="service-card p-8 text-center reveal delay-200">
+                    <div class="icon-wrap">
+                        <i data-lucide="camera" class="w-7 h-7 text-rose-dk"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-charcoal mb-3">Editorial &amp;<br />Audiovisual</h3>
+                    <p class="text-sm text-charcoal/60 leading-relaxed mb-6 text-justify">
+                        Maquiagem para ensaios fotográficos, vídeos, campanhas e produções criativas. Resultado que
+                        resiste às câmeras e iluminação profissional.
+                    </p>
+                    <ul class="text-xs text-charcoal/50 space-y-2 text-left mb-8">
+                        <li class="flex items-center gap-2"><i data-lucide="check"
+                                class="w-3.5 h-3.5 text-rose flex-shrink-0"></i> Técnica fotogênica</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check"
+                                class="w-3.5 h-3.5 text-rose flex-shrink-0"></i> Briefing criativo incluso</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check"
+                                class="w-3.5 h-3.5 text-rose flex-shrink-0"></i> Retoque durante a produção</li>
+                    </ul>
+                    <a href="https://wa.me/553198804988?text=Olá!%20Tenho%20interesse%20em%20Maquiagem%20Editorial%20🌸"
+                        target="_blank" rel="noopener" class="btn-outline text-sm w-full justify-center">
+                        Solicitar Orçamento
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+     GALERIA
+════════════════════════════════════════ -->
+    <section id="galeria" class="py-24 px-6 lg:px-12 bg-white">
+        <div class="max-w-6xl mx-auto">
+
+            <!-- Cabeçalho -->
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <p class="text-xs font-bold uppercase tracking-widest text-rose mb-3 reveal">Portfólio</p>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-charcoal mb-4 reveal delay-100">
+                    <span class="italic gradient-text">Resultados</span> que<br />falam por si
+                </h2>
+                <p class="text-charcoal/60 reveal delay-200">
+                    Cada imagem conta a história de uma mulher que se sentiu especial.
+                </p>
+            </div>
+
+            <!-- Grid -->
+            <div class="gallery-grid reveal">
+                <!-- Substitua os src pelas fotos reais ou URLs do Instagram -->
+                <div class="gallery-item">
+                    <img src="assets/portfolio-1.jpg" alt="Maquiagem social por IV Makeups — Contagem MG"
+                        onerror="this.parentElement.style.display='none'" />
+                    <div class="overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-8 h-8">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            <line x1="11" y1="8" x2="11" y2="14"></line>
+                            <line x1="8" y1="11" x2="14" y2="11"></line>
+                        </svg>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/portfolio-2.jpg" alt="Maquiagem noiva por IV Makeups"
+                        onerror="this.parentElement.style.display='none'" />
+                    <div class="overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-8 h-8">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            <line x1="11" y1="8" x2="11" y2="14"></line>
+                            <line x1="8" y1="11" x2="14" y2="11"></line>
+                        </svg>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/portfolio-3.jpg" alt="Maquiagem editorial IV Makeups"
+                        onerror="this.parentElement.style.display='none'" />
+                    <div class="overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-8 h-8">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            <line x1="11" y1="8" x2="11" y2="14"></line>
+                            <line x1="8" y1="11" x2="14" y2="11"></line>
+                        </svg>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/portfolio-4.jpg" alt="Maquiagem festa IV Makeups Contagem"
+                        onerror="this.parentElement.style.display='none'" />
+                    <div class="overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-8 h-8">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            <line x1="11" y1="8" x2="11" y2="14"></line>
+                            <line x1="8" y1="11" x2="14" y2="11"></line>
+                        </svg>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/portfolio-5.jpg" alt="Maquiagem natural IV Makeups"
+                        onerror="this.parentElement.style.display='none'" />
+                    <div class="overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-8 h-8">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            <line x1="11" y1="8" x2="11" y2="14"></line>
+                            <line x1="8" y1="11" x2="14" y2="11"></line>
+                        </svg>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/portfolio-6.jpg" alt="Maquiagem audiovisual IV Makeups"
+                        onerror="this.parentElement.style.display='none'" />
+                    <div class="overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-8 h-8">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            <line x1="11" y1="8" x2="11" y2="14"></line>
+                            <line x1="8" y1="11" x2="14" y2="11"></line>
+                        </svg>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/portfolio-7.jpg" alt="Maquiagem formatura IV Makeups"
+                        onerror="this.parentElement.style.display='none'" />
+                    <div class="overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-8 h-8">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            <line x1="11" y1="8" x2="11" y2="14"></line>
+                            <line x1="8" y1="11" x2="14" y2="11"></line>
+                        </svg>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/portfolio-8.jpg" alt="Maquiagem antes e depois IV Makeups"
+                        onerror="this.parentElement.style.display='none'" />
+                    <div class="overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-8 h-8">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            <line x1="11" y1="8" x2="11" y2="14"></line>
+                            <line x1="8" y1="11" x2="14" y2="11"></line>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Link Instagram -->
+            <div class="text-center mt-12 reveal">
+                <a href="https://www.instagram.com/ivmakeups/" target="_blank" rel="noopener"
+                    class="btn-outline inline-flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-5 h-5">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                    Ver mais no Instagram @ivmakeups
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" role="dialog" aria-label="Visualização da imagem">
+        <button id="lightbox-close" aria-label="Fechar">&times;</button>
+        <img id="lightbox-img" src="" alt="" />
+    </div>
+
+
+    <!-- ═══════════════════════════════════════
+     DEPOIMENTOS
+════════════════════════════════════════ -->
+    <section id="depoimentos" class="py-24 px-6 lg:px-12 bg-nude/20">
+        <div class="max-w-6xl mx-auto">
+
+            <div class="text-center max-w-xl mx-auto mb-16">
+                <p class="text-xs font-bold uppercase tracking-widest text-rose mb-3 reveal">Depoimentos</p>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-charcoal reveal delay-100">
+                    O que dizem<br />as <span class="italic gradient-text">clientes</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+
+                <div class="testimonial-card reveal">
+                    <div class="stars text-lg mb-3">★★★★★</div>
+                    <p class="text-sm text-charcoal/70 leading-relaxed mb-4 italic text-justify">
+                        "Fui no meu aniversário e me senti uma outra pessoa! A maquiagem durou o dia todo, não desfez
+                        nem com a emoção. Amei demais!"
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-9 h-9 rounded-full bg-nude-dk flex items-center justify-center text-rose font-bold text-sm">
+                            A</div>
+                        <div>
+                            <p class="font-semibold text-sm">Ana Paula</p>
+                            <p class="text-xs text-charcoal/40">Contagem, MG</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card reveal delay-100">
+                    <div class="stars text-lg mb-3">★★★★★</div>
+                    <p class="text-sm text-charcoal/70 leading-relaxed mb-4 italic text-justify">
+                        "Fiz a Masterclass e aprendi técnicas que nunca tinha visto em lugar nenhum. Super profissional,
+                        paciente e didática. Recomendo muito!"
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-9 h-9 rounded-full bg-nude-dk flex items-center justify-center text-rose font-bold text-sm">
+                            C</div>
+                        <div>
+                            <p class="font-semibold text-sm">Camila Rodrigues</p>
+                            <p class="text-xs text-charcoal/40">Belo Horizonte, MG</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card reveal delay-200">
+                    <div class="stars text-lg mb-3">★★★★★</div>
+                    <p class="text-sm text-charcoal/70 leading-relaxed mb-4 italic text-justify">
+                        "Maquiagem do meu casamento ficou perfeita nas fotos! Ela entendeu exatamente o que eu queria:
+                        natural, elegante e que durasse a festa toda."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-9 h-9 rounded-full bg-nude-dk flex items-center justify-center text-rose font-bold text-sm">
+                            J</div>
+                        <div>
+                            <p class="font-semibold text-sm">Juliana Moreira</p>
+                            <p class="text-xs text-charcoal/40">Contagem, MG — Noiva</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+     FAQ
+════════════════════════════════════════ -->
+    <section id="faq" class="py-24 px-6 lg:px-12 bg-white">
+        <div class="max-w-3xl mx-auto">
+
+            <div class="text-center mb-14">
+                <p class="text-xs font-bold uppercase tracking-widest text-rose mb-3 reveal">FAQ</p>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-charcoal reveal delay-100">
+                    Perguntas <span class="italic gradient-text">frequentes</span>
+                </h2>
+            </div>
+
+            <div class="space-y-0 reveal delay-200">
+
+                <div class="faq-item">
+                    <button class="faq-btn" aria-expanded="false">
+                        <span>Quanto tempo dura a maquiagem?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>Com os produtos e técnicas que utilizo, a maquiagem dura em média 8 a 12 horas com ótimo
+                            aspecto. Para eventos de longa duração, oriento sobre cuidados e, se necessário, faço
+                            retoques.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-btn" aria-expanded="false">
+                        <span>Os cílios postiços estão inclusos no valor?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>Depende do pacote escolhido. Na maioria dos atendimentos sociais os cílios já estão inclusos
+                            no valor. Em caso de cílios fios a fio ou premium, podem ter custo adicional. Consulte ao
+                            agendar.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-btn" aria-expanded="false">
+                        <span>Você atende em domicílio ou tem estúdio fixo?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>Atendo tanto no estúdio em Contagem — MG quanto a domicílio. Para atendimentos fora da
+                            região, entre em contato para verificar disponibilidade e taxa de deslocamento.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-btn" aria-expanded="false">
+                        <span>Como devo chegar para o atendimento?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>Para melhor resultado e maior durabilidade, chegue com a pele limpa e hidratada, sem
+                            maquiagem. Caso queira, pode enviar fotos de referência antes pelo WhatsApp — adoro alinhar
+                            expectativas!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-btn" aria-expanded="false">
+                        <span>Qual é o prazo para agendar? Tem lista de espera?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>Os horários costumam preencher rápido, especialmente nos finais de semana e em datas
+                            festivas. Recomendo agendar com pelo menos 2 a 4 semanas de antecedência para garantir sua
+                            data.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-btn" aria-expanded="false">
+                        <span>A Masterclass é presencial ou online?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>A Masterclass Essence of Beauty é realizada presencialmente em Contagem — MG para garantir a
+                            melhor experiência prática. Turmas limitadas para atendimento personalizado. Consulte as
+                            próximas datas.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+     CONTATO
+════════════════════════════════════════ -->
+    <section id="contato" class="py-24 px-6 lg:px-12 bg-nude/20">
+        <div class="max-w-6xl mx-auto">
+
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+                <!-- Info -->
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-widest text-rose mb-3 reveal">Contato</p>
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-charcoal mb-6 reveal delay-100">
+                        Vamos criar algo<br />
+                        <span class="italic gradient-text">incrível</span> juntas?
+                    </h2>
+                    <p class="text-charcoal/60 leading-relaxed mb-8 reveal delay-200">
+                        Preencha o formulário ao lado e vou entrar em contato pelo WhatsApp para confirmar seu
+                        agendamento ou tirar todas as dúvidas.
+                    </p>
+
+                    <!-- Contatos rápidos -->
+                    <div class="space-y-4 reveal delay-300">
+                        <a href="https://wa.me/553198804988" target="_blank" rel="noopener"
+                            class="flex items-center gap-4 group">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-[#25D366]/10 flex items-center justify-center group-hover:bg-[#25D366]/20 transition-colors">
+                                <i data-lucide="message-circle" class="w-5 h-5 text-[#25D366]"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-charcoal/40 uppercase tracking-wider">WhatsApp</p>
+                                <p class="font-semibold text-charcoal group-hover:text-rose transition-colors">
+                                    553198804988
+                                </p>
+                            </div>
+                        </a>
+                        <a href="https://www.instagram.com/ivmakeups/" target="_blank" rel="noopener"
+                            class="flex items-center gap-4 group">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-rose/10 flex items-center justify-center group-hover:bg-rose/20 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="w-5 h-5 text-rose">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-xs text-charcoal/40 uppercase tracking-wider">Instagram</p>
+                                <p class="font-semibold text-charcoal group-hover:text-rose transition-colors">
+                                    @ivmakeups</p>
+                            </div>
+                        </a>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-nude-dk/30 flex items-center justify-center">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-rose-dk"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-charcoal/40 uppercase tracking-wider">Localização</p>
+                                <p class="font-semibold text-charcoal">Contagem — MG</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mapa -->
+                    <div class="mt-8 rounded-2xl overflow-hidden shadow-sm reveal delay-400">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59904.27388!2d-44.092!3d-19.932!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa699b50e487b0d%3A0x78c9a00f1900d7e8!2sContagem%2C%20MG!5e0!3m2!1spt-BR!2sbr!4v1"
+                            width="100%" height="220" style="border:0; display:block;" allowfullscreen loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade" title="Localização IV Makeups — Contagem MG">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Formulário -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-nude-dk/15 reveal delay-200">
+                    <h3 class="font-serif text-2xl font-bold text-charcoal mb-6">Solicitar Agendamento</h3>
+
+                    <form id="contactForm" novalidate>
+                        <!-- Honeypot antispam -->
+                        <input type="text" name="website" tabindex="-1" autocomplete="off" class="hp-field"
+                            aria-hidden="true" />
+
+                        <div class="space-y-5">
+                            <div>
+                                <label class="form-label" for="name">Nome completo *</label>
+                                <input id="name" name="name" type="text" required placeholder="Seu nome"
+                                    class="form-input" />
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="form-label" for="phone">WhatsApp *</label>
+                                    <input id="phone" name="phone" type="tel" required placeholder="(31) 9 9999-9999"
+                                        class="form-input" />
+                                </div>
+                                <div>
+                                    <label class="form-label" for="email">E-mail</label>
+                                    <input id="email" name="email" type="email" placeholder="seu@email.com"
+                                        class="form-input" />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="form-label" for="service">Tipo de serviço *</label>
+                                <select id="service" name="service" required class="form-input">
+                                    <option value="" disabled selected>Selecione…</option>
+                                    <option>Maquiagem Social (Festas / Eventos)</option>
+                                    <option>Maquiagem de Noiva / Beauty Day</option>
+                                    <option>Editorial / Audiovisual</option>
+                                    <option>Masterclass Essence of Beauty</option>
+                                    <option>Outro</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="form-label" for="date">Data de interesse</label>
+                                <input id="date" name="date" type="date" class="form-input" />
+                            </div>
+
+                            <div>
+                                <label class="form-label" for="message">Mensagem (opcional)</label>
+                                <textarea id="message" name="message" rows="3"
+                                    placeholder="Conte um pouco sobre o evento ou dúvidas…"
+                                    class="form-input resize-none"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-primary w-full justify-center text-base py-4">
+                                <i data-lucide="send" class="w-5 h-5"></i>
+                                Enviar para WhatsApp
+                            </button>
+
+                            <p class="text-xs text-charcoal/40 text-center">
+                                Ao enviar, você será redirecionada para o WhatsApp com a mensagem pré-preenchida. 🌸
+                            </p>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+    <footer class="bg-charcoal text-white/70 py-12 px-6 lg:px-12">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+
+                <!-- Logo -->
+                <div class="text-center md:text-left">
+                    <p class="font-serif text-2xl font-bold text-white">IV <span class="gradient-text">Makeups</span>
+                    </p>
+                    <p class="text-sm mt-1">Maquiadora profissional — Contagem, MG</p>
+                </div>
+
+                <!-- Links -->
+                <nav class="flex flex-wrap justify-center gap-6 text-sm">
+                    <a href="#sobre" class="hover:text-rose transition-colors">Sobre</a>
+                    <a href="#servicos" class="hover:text-rose transition-colors">Serviços</a>
+                    <a href="#galeria" class="hover:text-rose transition-colors">Galeria</a>
+                    <a href="#depoimentos" class="hover:text-rose transition-colors">Depoimentos</a>
+                    <a href="#contato" class="hover:text-rose transition-colors">Contato</a>
+                </nav>
+
+                <!-- Sociais -->
+                <div class="flex items-center gap-4">
+                    <a href="https://www.instagram.com/ivmakeups/" target="_blank" rel="noopener"
+                        aria-label="Instagram IV Makeups"
+                        class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-rose transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-5 h-5">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="https://wa.me/553198804988" target="_blank" rel="noopener" aria-label="WhatsApp IV Makeups"
+                        class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#25D366] transition-colors">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+
+            <hr class="border-white/10 my-8" />
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/40">
+                <p>&copy; <span id="year"></span> IV Makeups. Todos os direitos reservados.</p>
+                <p>
+                    Site por
+                    <a href="https://brunorosa.tech" target="_blank" rel="noopener"
+                        class="text-white/60 hover:text-rose transition-colors">Bruno Rosa</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ═══════════════════════════════════════
+     BOTÃO FLUTUANTE WHATSAPP
+════════════════════════════════════════ -->
+    <a href="https://wa.me/553198804988?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20🌸"
+        target="_blank" rel="noopener" class="whatsapp-float" aria-label="Falar com IV Makeups pelo WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+    </a>
+
+    <!-- ── Scripts ── -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
