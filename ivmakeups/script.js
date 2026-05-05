@@ -69,7 +69,12 @@ function initMobileMenu() {
         document.body.style.overflow = '';
     };
 
-    btn.addEventListener('click', open);
+    const toggle = () => {
+        const isOpen = menu.classList.contains('opacity-100');
+        if (isOpen) close(); else open();
+    };
+
+    btn.addEventListener('click', toggle);
     if (closeBtn) closeBtn.addEventListener('click', close);
     links.forEach(link => link.addEventListener('click', close));
 }
