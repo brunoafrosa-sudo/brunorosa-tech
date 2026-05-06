@@ -297,14 +297,15 @@ nav a:hover::after { width: 100%; }
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: transparent;
-    color: var(--rose-gold);
+    background: rgba(255, 255, 255, 0.5); /* Fundo leve para contraste */
+    backdrop-filter: blur(4px);
+    color: var(--rose-dark); /* Cor mais escura para melhor leitura */
     padding: 0.875rem 2rem;
     border-radius: 9999px;
-    font-weight: 600;
+    font-weight: 700; /* Mais peso na fonte */
     font-size: 0.9rem;
     letter-spacing: 0.02em;
-    border: 1.5px solid var(--rose-gold);
+    border: 2px solid var(--rose-gold); /* Borda mais espessa */
     transition: all 0.25s ease;
     text-decoration: none;
     cursor: pointer;
@@ -313,6 +314,7 @@ nav a:hover::after { width: 100%; }
     background: var(--rose-gold);
     color: #fff;
     transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(201, 149, 108, 0.2);
 }
 
 /* ── Badge / Seal ── */

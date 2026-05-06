@@ -8,6 +8,7 @@ import WeightCalculator from './components/WeightCalculator'
 import ContactForm from './components/ContactForm'
 import ProductGallery from './components/ProductGallery'
 import GoogleMap from './components/GoogleMap'
+import CookieConsent from './components/CookieConsent'
 
 const NAV_LINKS = [
   { href: '#sobre', label: 'Sobre' },
@@ -467,6 +468,7 @@ export default function App() {
           <MessageCircle size={28} />
         </a>
       </div>
+      <CookieConsent />
     </div>
   )
 }
