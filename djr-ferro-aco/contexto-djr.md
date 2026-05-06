@@ -34,7 +34,7 @@
 - **Depreciação:** Utilize a configuração atualizada do Vite (sem a opção depreciada `esbuild` no plugin react-babel).
 
 ## 6. Informações Institucionais (Extraídas de /sobrenos.php)
-- **História:** A DJR Ferro e Aço possui trajetória consolidada no mercado de Contagem e Grande BH, focada em soluções práticas para a construção civil.
+- **História:** A DJR Ferro e Aço possui trajetória consolidada no mercado de Sabará e Grande BH, focada em soluções práticas para a construção civil.
 - **Diferenciais Estratégicos:**
     - Experiência técnica na leitura e execução de projetos de armação de aço.
     - Pontualidade rigorosa na entrega para evitar paradas no cronograma da obra.

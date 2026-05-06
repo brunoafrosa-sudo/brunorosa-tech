@@ -7,12 +7,14 @@ import {
 import WeightCalculator from './components/WeightCalculator'
 import ContactForm from './components/ContactForm'
 import ProductGallery from './components/ProductGallery'
+import GoogleMap from './components/GoogleMap'
 
 const NAV_LINKS = [
   { href: '#sobre', label: 'Sobre' },
   { href: '#produtos', label: 'Produtos' },
   { href: '#servicos', label: 'Serviços' },
   { href: '#calculadora', label: 'Calculadora' },
+  { href: '#localizacao', label: 'Localização' },
   { href: '#contato', label: 'Contato' },
 ]
 
@@ -222,7 +224,7 @@ export default function App() {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-black mb-4 text-slate-900">Quem Somos</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
-              Trajetória consolidada no mercado de Contagem e Grande BH, focada em
+              Trajetória consolidada no mercado de Sabará e Grande BH, focada em
               soluções práticas para a construção civil.
             </p>
           </div>
@@ -321,6 +323,9 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      {/* ===== MAPA E AVALIAÇÕES ===== */}
+      <GoogleMap />
 
       {/* ===== CALCULADORA ===== */}
       <section id="calculadora" className="py-16 md:py-24 bg-white">
@@ -426,8 +431,8 @@ export default function App() {
           <img src="/logo.png" alt="DJR Logo" className="h-10 mx-auto mb-4 opacity-80" />
           <p className="text-slate-600 text-sm">R. Floriano Peixoto Viterbo, 210 — Centro, Sabará/MG</p>
           <p className="text-slate-600 text-sm mt-1">
-            CNPJ: 18.586.811/0001-81 &nbsp;|&nbsp; 
-            <a href="mailto:contato@djrferroeaco.com.br" className="hover:text-orange-600 transition-colors">contato@djrferroeaco.com.br</a> 
+            CNPJ: 18.586.811/0001-81 &nbsp;|&nbsp;
+            <a href="mailto:contato@djrferroeaco.com.br" className="hover:text-orange-600 transition-colors">contato@djrferroeaco.com.br</a>
             &nbsp;|&nbsp; (31) 3396-8164
           </p>
           <div className="mt-8 flex flex-col items-center gap-2">
