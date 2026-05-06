@@ -28,22 +28,34 @@ document.addEventListener('DOMContentLoaded', () => {
 // ── Mini Chat Logic ──
 function initChat() {
     const toggle = document.getElementById('chat-toggle');
-    const window = document.getElementById('chat-window');
+    const windowChat = document.getElementById('chat-window');
     const questions = document.querySelectorAll('.chat-question');
     const answerBox = document.getElementById('chat-answer');
     const answerText = document.getElementById('answer-text');
 
-    if (!toggle || !window) return;
+    if (!toggle || !windowChat) return;
 
-    toggle.addEventListener('click', () => {
-        const isHidden = window.classList.contains('opacity-0');
+    toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isHidden = windowChat.classList.contains('opacity-0');
         if (isHidden) {
-            window.classList.remove('opacity-0', 'scale-90', 'translate-y-10');
-            window.classList.add('opacity-100', 'scale-100', 'translate-y-0');
+            windowChat.classList.remove('opacity-0', 'scale-90', 'translate-y-10');
+            windowChat.classList.add('opacity-100', 'scale-100', 'translate-y-0');
         } else {
-            window.classList.add('opacity-0', 'scale-90', 'translate-y-10');
-            window.classList.remove('opacity-100', 'scale-100', 'translate-y-0');
+            windowChat.classList.add('opacity-0', 'scale-90', 'translate-y-10');
+            windowChat.classList.remove('opacity-100', 'scale-100', 'translate-y-0');
             answerBox.classList.add('hidden');
+        }
+    });
+
+    // Fechar ao clicar fora
+    document.addEventListener('click', (e) => {
+        if (!windowChat.contains(e.target) && !toggle.contains(e.target)) {
+            if (!windowChat.classList.contains('opacity-0')) {
+                windowChat.classList.add('opacity-0', 'scale-90', 'translate-y-10');
+                windowChat.classList.remove('opacity-100', 'scale-100', 'translate-y-0');
+                answerBox.classList.add('hidden');
+            }
         }
     });
 
