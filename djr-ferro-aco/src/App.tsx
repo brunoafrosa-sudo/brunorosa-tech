@@ -184,6 +184,11 @@ export default function App() {
         {/* Conteúdo sobre a imagem */}
         <div className="max-w-6xl mx-auto px-4 py-24 md:py-32 relative z-10 w-full">
           <div className="max-w-2xl">
+            {/* Callout com destaque */}
+            <div className="inline-flex items-center gap-2 bg-yellow-400 text-slate-900 text-xs md:text-sm font-black px-4 py-2 rounded-md mb-4 uppercase tracking-widest animate-pulse shadow-lg shadow-yellow-400/30 whitespace-nowrap md:whitespace-normal">
+              <span className="hidden sm:inline">⚡</span>
+              Cobrimos qualquer orçamento comprovado!
+            </div>
             <span className="inline-block bg-orange-500/30 text-orange-300 text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-widest backdrop-blur-sm">
               Sabará · Grande BH · Desde 2000
             </span>

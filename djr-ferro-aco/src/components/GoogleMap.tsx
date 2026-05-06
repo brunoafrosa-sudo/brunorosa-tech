@@ -67,9 +67,9 @@ export default function GoogleMap() {
               href={googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+              className="mt-4 inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-lg shadow-orange-500/20 active:scale-95"
             >
-              <MapPin size={18} />
+              <MapPin size={20} />
               Abrir no Google Maps
             </a>
           </div>
