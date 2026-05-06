@@ -440,26 +440,26 @@ export default function App() {
       </footer>
 
       {/* ===== BOTÕES FLUTUANTES ===== */}
-      <div className="fixed bottom-6 right-4 z-50 flex flex-col gap-3 items-end">
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 items-center">
         <a
           href="https://www.instagram.com/djrferroeaco/"
           target="_blank"
           rel="noopener noreferrer"
           title="Siga-nos no Instagram"
-          className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 text-white shadow-lg transition-transform hover:scale-110"
+          className="flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 text-white shadow-lg transition-all hover:scale-110 hover:shadow-purple-500/20"
           aria-label="Instagram"
         >
-          <Instagram size={20} />
+          <Instagram size={24} />
         </a>
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
           title="WhatsApp DJR Ferro e Aço"
-          className="flex items-center justify-center w-14 h-14 rounded-full bg-green-600 hover:bg-green-700 text-white shadow-lg shadow-green-600/30 transition-colors"
+          className="flex items-center justify-center w-14 h-14 rounded-full bg-green-600 hover:bg-green-700 text-white shadow-lg shadow-green-600/30 transition-all hover:scale-110"
           aria-label="WhatsApp"
         >
-          <MessageCircle size={24} />
+          <MessageCircle size={28} />
         </a>
       </div>
     </div>
