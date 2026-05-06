@@ -1,0 +1,35 @@
+# Dependências e Pacotes (ESSENCIAL para economia de créditos)
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Pastas de Build e Saída
+dist/
+build/
+.next/
+out/
+
+# Configurações de Ambiente e Segredos
+.env
+.env.*
+!.env.example
+
+# Logs e Cache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
+.stylelintcache
+.vite/
+.turbo/
+
+# Pastas de Sistema e IDE
+.git/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Histórico do Claude (Opcional, para limpar sessões anteriores)
+.claude/
