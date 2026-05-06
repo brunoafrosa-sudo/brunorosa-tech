@@ -3,6 +3,7 @@ import {
   Menu, X, Phone, MessageCircle, MapPin, Clock, ChevronRight,
   Building2, Layers, Sheet, Scissors, Columns, RulerIcon, ClipboardList,
   ShieldCheck, Timer, Boxes, Wrench, Mail, Instagram,
+  HardHat, Factory, ChevronDown, LayoutGrid
 } from 'lucide-react'
 import WeightCalculator from './components/WeightCalculator'
 import ContactForm from './components/ContactForm'
@@ -13,7 +14,9 @@ import CookieConsent from './components/CookieConsent'
 const NAV_LINKS = [
   { href: '#sobre', label: 'Sobre' },
   { href: '#produtos', label: 'Produtos' },
+  { href: '#especificacoes', label: 'Especificações' },
   { href: '#servicos', label: 'Serviços' },
+  { href: '#setores', label: 'Setores' },
   { href: '#calculadora', label: 'Calculadora' },
   { href: '#localizacao', label: 'Localização' },
   { href: '#contato', label: 'Contato' },
@@ -80,8 +83,49 @@ const DIFERENCIAIS = [
   { titulo: 'Corte e Dobra', desc: 'Material pronto para uso, reduzindo desperdício no canteiro.', Icone: Wrench },
 ]
 
+const SETORES = [
+  { nome: 'Construção Civil', icone: HardHat, desc: 'Vergalhões, corte e dobra e telas para obras de qualquer porte.' },
+  { nome: 'Serralherias', icone: Wrench, desc: 'Perfis, tubos e chapas com corte sob medida para serralheiros.' },
+  { nome: 'Indústrias Mecânicas', icone: Factory, desc: 'Aço estrutural de alta resistência para fabricação de máquinas.' },
+  { nome: 'Estruturas Metálicas', icone: LayoutGrid, desc: 'Vigas W, U e I para grandes galpões e projetos estruturais.' },
+]
+
+const ESPECIFICACOES = [
+  {
+    id: 'vigas-w',
+    titulo: 'Vigas Laminadas (W)',
+    tabela: [
+      { bitola: 'W 150 x 13.0', peso: '13.0 kg/m', altura: '148 mm', mesa: '100 mm' },
+      { bitola: 'W 200 x 15.0', peso: '15.0 kg/m', altura: '200 mm', mesa: '100 mm' },
+      { bitola: 'W 250 x 17.9', peso: '17.9 kg/m', altura: '251 mm', mesa: '101 mm' },
+      { bitola: 'W 310 x 21.0', peso: '21.0 kg/m', altura: '303 mm', mesa: '101 mm' },
+    ]
+  },
+  {
+    id: 'perfis-u',
+    titulo: 'Perfis U e I (Dobrados/Laminados)',
+    tabela: [
+      { bitola: 'U 3" (primeira)', peso: '6.10 kg/m', altura: '76.2 mm', mesa: '35.8 mm' },
+      { bitola: 'U 4" (primeira)', peso: '8.04 kg/m', altura: '101.6 mm', mesa: '40.2 mm' },
+      { bitola: 'I 3" (primeira)', peso: '8.48 kg/m', altura: '76.2 mm', mesa: '59.1 mm' },
+      { bitola: 'I 4" (primeira)', peso: '11.46 kg/m', altura: '101.6 mm', mesa: '67.6 mm' },
+    ]
+  },
+  {
+    id: 'chapas',
+    titulo: 'Chapas (Grossas e Finas)',
+    tabela: [
+      { bitola: '1/8" (3.17mm)', peso: '25.00 kg/m²', aplicacao: 'Estrutural / Serralheria' },
+      { bitola: '3/16" (4.75mm)', peso: '37.50 kg/m²', aplicacao: 'Estrutural Pesada' },
+      { bitola: '1/4" (6.35mm)', peso: '50.00 kg/m²', aplicacao: 'Indústria / Bases' },
+      { bitola: '3/8" (9.50mm)', peso: '75.00 kg/m²', aplicacao: 'Indústria Pesada' },
+    ]
+  }
+]
+
 export default function App() {
   const [menuAberto, setMenuAberto] = useState(false)
+  const [accordionAtivo, setAccordionAtivo] = useState<string | null>('vigas-w')
 
   const whatsappUrl = 'https://wa.me/5531993608992?text=' + encodeURIComponent('Olá! Gostaria de um orçamento.')
 
@@ -286,6 +330,63 @@ export default function App() {
         </div>
       </section>
 
+      {/* ===== ESPECIFICAÇÕES TÉCNICAS (ACCORDION) ===== */}
+      <section id="especificacoes" className="py-16 md:py-24 bg-slate-50 border-y border-slate-200">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <span className="text-orange-500 font-bold text-xs uppercase tracking-[0.2em] mb-2 block">Dados Técnicos</span>
+            <h2 className="text-3xl md:text-4xl font-black mb-4 text-slate-900">Especificações de Vigas e Chapas</h2>
+            <p className="text-slate-600">Confira as tabelas de referência para cálculo e planejamento da sua obra.</p>
+          </div>
+
+          <div className="space-y-3">
+            {ESPECIFICACOES.map((item) => (
+              <div key={item.id} className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm transition-all hover:border-orange-500/30">
+                <button
+                  onClick={() => setAccordionAtivo(accordionAtivo === item.id ? null : item.id)}
+                  className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
+                >
+                  <span className="text-lg font-bold text-slate-800">{item.titulo}</span>
+                  <ChevronDown 
+                    size={20} 
+                    className={`text-orange-500 transition-transform duration-300 ${accordionAtivo === item.id ? 'rotate-180' : ''}`} 
+                  />
+                </button>
+                
+                <div 
+                  className={`transition-all duration-300 ease-in-out overflow-hidden ${accordionAtivo === item.id ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`}
+                >
+                  <div className="px-6 pb-6 overflow-x-auto">
+                    <table className="w-full text-sm text-left border-collapse">
+                      <thead>
+                        <tr className="border-b-2 border-slate-100">
+                          {Object.keys(item.tabela[0]).map((header) => (
+                            <th key={header} className="px-4 py-3 font-bold text-slate-700 uppercase tracking-wider text-[10px]">
+                              {header}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-50">
+                        {item.tabela.map((linha, idx) => (
+                          <tr key={idx} className="hover:bg-slate-50 transition-colors">
+                            {Object.values(linha).map((valor, i) => (
+                              <td key={i} className="px-4 py-4 text-slate-600 font-medium whitespace-nowrap">
+                                {valor}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ===== GALERIA DE PRODUTOS ===== */}
       <ProductGallery />
 
@@ -326,6 +427,37 @@ export default function App() {
               <MessageCircle size={18} />
               Solicitar Serviço
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== SETORES ATENDIDOS ===== */}
+      <section id="setores" className="py-16 md:py-24 bg-white relative overflow-hidden">
+        {/* Background Accent */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-orange-500/5 rounded-full -ml-32 -mb-32 blur-3xl"></div>
+
+        <div className="max-w-6xl mx-auto px-4 relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-black mb-4 text-slate-900">Setores Atendidos</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              Parceiro estratégico para diversos segmentos, do fornecimento pontual à execução de grandes projetos.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {SETORES.map(({ nome, icone: Icone, desc }) => (
+              <div
+                key={nome}
+                className="group flex flex-col items-center text-center p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:border-orange-500/30 hover:bg-white hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300"
+              >
+                <div className="w-16 h-16 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-6 text-orange-500 group-hover:bg-orange-500 group-hover:text-white group-hover:scale-110 transition-all duration-500">
+                  <Icone size={32} strokeWidth={1.5} />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-3">{nome}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">{desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
