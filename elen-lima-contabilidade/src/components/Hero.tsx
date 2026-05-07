@@ -78,7 +78,7 @@ export default function Hero() {
         <div className="flex justify-center lg:justify-end">
           <div className="relative h-80 w-80 overflow-hidden rounded-2xl border border-white/10 shadow-2xl sm:h-96 sm:w-96">
             <Image
-              src="/asset/img/hero-elen.png"
+              src="/img/hero-elen.png"
               alt="Elen Lima — Contadora especialista em arquitetos e engenheiros em Contagem"
               fill
               priority

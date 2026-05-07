@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     images: [
       {
-        url: `${SITE_URL}/asset/img/og-preview-blue.jpg`,
+        url: `${SITE_URL}/img/og-preview-blue.jpg`,
         width: 1200,
         height: 630,
         alt: `${SITE_NAME} - Especialista em Arquitetos e Engenheiros`,
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     images: [
       {
-        url: `${SITE_URL}/asset/img/og-preview-blue.jpg`,
+        url: `${SITE_URL}/img/og-preview-blue.jpg`,
         alt: `${SITE_NAME} - Especialista em Arquitetos e Engenheiros`,
       },
     ],
