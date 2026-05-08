@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://djrferroeaco.brunorosa.tech/sitemap.xml
