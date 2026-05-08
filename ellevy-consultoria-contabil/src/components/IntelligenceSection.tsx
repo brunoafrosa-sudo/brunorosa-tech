@@ -31,12 +31,12 @@ function KPICard({
 
 // --- Bar Chart Mockup ---
 const BARS = [
-  { label: 'Jan', h: 40 },
-  { label: 'Fev', h: 60 },
-  { label: 'Mar', h: 50 },
-  { label: 'Abr', h: 75 },
-  { label: 'Mai', h: 65 },
-  { label: 'Jun', h: 90 },
+  { label: 'Jan', h: 40, value: 'R$12k' },
+  { label: 'Fev', h: 60, value: 'R$18k' },
+  { label: 'Mar', h: 50, value: 'R$15k' },
+  { label: 'Abr', h: 75, value: 'R$24k' },
+  { label: 'Mai', h: 65, value: 'R$20k' },
+  { label: 'Jun', h: 90, value: 'R$28k' },
 ]
 
 function BarChartMock() {
@@ -49,9 +49,10 @@ function BarChartMock() {
         </div>
         <BarChart2 size={18} className="text-brand-blue" aria-hidden="true" />
       </div>
-      <div className="flex items-end gap-2 mt-auto" style={{ height: 96 }}>
+      <div className="flex items-end gap-2 mt-auto" style={{ height: 110 }}>
         {BARS.map((bar) => (
           <div key={bar.label} className="flex flex-col items-center gap-1 flex-1 h-full">
+            <span className="text-brand-blue font-semibold text-[10px] mb-1">{bar.value}</span>
             <div
               className="w-full bg-brand-blue rounded-t-md opacity-80 hover:opacity-100 transition-opacity mt-auto"
               style={{ height: `${bar.h}%` }}
