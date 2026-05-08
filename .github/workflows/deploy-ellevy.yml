@@ -35,4 +35,4 @@ jobs:
           # Envia apenas o conteúdo da pasta dist (build final)
           local-dir: ./ellevy-consultoria-contabil/dist/ 
           # Pasta de destino no seu FTP da Hostinger
-          server-dir: /domains/brunorosa.tech/public_html/ellevy-consultoria-contabil/
+          server-dir: ./
