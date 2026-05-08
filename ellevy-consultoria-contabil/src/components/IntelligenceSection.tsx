@@ -18,7 +18,7 @@ function KPICard({
   const color = trend === 'up' ? 'text-emerald-500' : trend === 'down' ? 'text-red-400' : 'text-brand-gray-light'
 
   return (
-    <div className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm">
+    <div className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm min-h-[110px] flex flex-col justify-between">
       <p className="text-brand-gray-light text-xs uppercase tracking-widest mb-2">{label}</p>
       <p className="text-brand-dark font-black text-2xl mb-1">{value}</p>
       <div className={`flex items-center gap-1 text-xs font-semibold ${color}`}>
@@ -197,7 +197,7 @@ export function IntelligenceSection() {
         </motion.div>
 
         {/* KPIs */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           {KPIS.map((kpi, i) => (
             <motion.div
               key={kpi.label}

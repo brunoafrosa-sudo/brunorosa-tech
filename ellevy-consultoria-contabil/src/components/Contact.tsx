@@ -76,7 +76,7 @@ export function Contact() {
             {CONTACT_ITEMS.map((item) => {
               const Icon = item.icon
               return (
-                <div key={item.label} className="flex items-start gap-4">
+                <div key={item.label} className="flex items-center gap-4">
                   <div className="flex-shrink-0 w-11 h-11 bg-white/10 rounded-xl flex items-center justify-center">
                     <Icon size={20} className="text-white" aria-hidden="true" />
                   </div>

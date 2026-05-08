@@ -76,7 +76,7 @@ export function Team() {
               {VALUES.map((value) => {
                 const Icon = value.icon
                 return (
-                  <div key={value.title} className="flex items-start gap-4">
+                  <div key={value.title} className="flex items-center gap-4">
                     <div className="flex-shrink-0 w-10 h-10 bg-brand-blue/10 rounded-xl flex items-center justify-center">
                       <Icon size={20} className="text-brand-blue" aria-hidden="true" />
                     </div>
