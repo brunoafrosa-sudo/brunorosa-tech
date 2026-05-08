@@ -72,7 +72,7 @@ export function TaxCalculator() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-brand-beige rounded-3xl p-6 sm:p-8 md:p-12 w-full max-w-2xl"
+          className="bg-brand-beige rounded-3xl p-6 sm:p-8 md:p-12 w-full"
         >
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-12 bg-brand-blue rounded-xl flex items-center justify-center">

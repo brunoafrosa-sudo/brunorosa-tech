@@ -3,6 +3,7 @@ import { Hero } from './components/Hero'
 import { Services } from './components/Services'
 import { Differentials } from './components/Differentials'
 import { Intelligence } from './components/Intelligence'
+import { IntelligenceSection } from './components/IntelligenceSection'
 import { TaxCalculator } from './components/TaxCalculator'
 import { FAQ } from './components/FAQ'
 import { Team } from './components/Team'
@@ -19,6 +20,7 @@ export default function App() {
         <Services />
         <Differentials />
         <Intelligence />
+        <IntelligenceSection />
         <TaxCalculator />
         <FAQ />
         <Team />
