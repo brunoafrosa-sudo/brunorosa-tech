@@ -1,0 +1,38 @@
+name: Deploy Elen Lima Contabilidade
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'elen-lima-contabilidade/**' # Monitora apenas esta pasta
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Build Project
+        working-directory: ./elen-lima-contabilidade
+        run: |
+          npm install
+          npm run build
+
+      - name: Deploy via FTP to Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # Envia apenas o conteúdo da pasta out (build estático do Next.js)
+          local-dir: ./elen-lima-contabilidade/out/
+          # Pasta de destino no seu FTP da Hostinger
+          server-dir: /domains/brunorosa.tech/public_html/elen-lima-contabilidade/
