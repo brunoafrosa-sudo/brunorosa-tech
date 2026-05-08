@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-brand-dark bg-brand-off-white antialiased;
+  }
+}
+
+@layer utilities {
+  /* Faixa azul estilo "marca-texto" reutilizável */
+  .section-label {
+    @apply flex items-center gap-3 mb-4;
+  }
+
+  .section-label::before {
+    content: '';
+    @apply block w-8 h-1 bg-brand-blue rounded-full flex-shrink-0;
+  }
+}
