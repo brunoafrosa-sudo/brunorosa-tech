@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --color-crimson: #8B0000;
+  --color-crimson-hover: #A52A2A;
+  --color-navy: #0F172A;
+  --color-navy-light: #1E293B;
+  --color-ice: #F8FAFC;
+
+  --font-family-serif: "Playfair Display", serif;
+  --font-family-sans: "Inter", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-ice);
+    color: var(--color-navy);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-family-serif);
+  }
+}
+
+.selection-crimson::selection {
+  background-color: color-mix(in srgb, var(--color-crimson) 20%, transparent);
+  color: var(--color-crimson);
+}
