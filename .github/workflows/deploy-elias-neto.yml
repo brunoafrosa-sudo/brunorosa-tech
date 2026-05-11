@@ -33,4 +33,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./elias-neto/dist/
-          server-dir: /domains/brunorosa.tech/public_html/elias-neto/
+          server-dir: /domains/brunorosa.tech/public_html/elias-neto/dist/
