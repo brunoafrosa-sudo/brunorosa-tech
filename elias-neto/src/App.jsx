@@ -24,17 +24,17 @@ import {
 
 // --- Dados do Protótipo ---
 const SERVICES = [
-  { title: 'Administrativo',          icon: FileText,   desc: 'Assessoria em licitações, contratos com o poder público, impugnações e recursos administrativos perante órgãos governamentais.' },
-  { title: 'Ambiental',               icon: Leaf,       desc: 'Consultoria em licenciamentos ambientais, defesa em infrações, regularização fundiária e compliance ambiental para empresas.' },
-  { title: 'Civil',                   desc: 'Atuação em contratos, responsabilidade civil, cobranças, direito de família, herança, partilha de bens e disputas imobiliárias.',     icon: Users      },
-  { title: 'Comercial',               icon: Home,       desc: 'Estruturação e revisão de contratos empresariais, defesa em litígios comerciais, relações entre sócios e recuperação de crédito.' },
-  { title: 'Fiscal e Tributário',     icon: TrendingUp, desc: 'Planejamento tributário, defesa em autuações fiscais, recuperação de tributos pagos indevidamente e consultoria para redução da carga fiscal.' },
-  { title: 'Internacional',           icon: Globe,      desc: 'Consultoria em negócios transfronteiriços, contratos internacionais, arbitragem, importação/exportação e investimento estrangeiro.' },
-  { title: 'Penal e Econômico',       icon: UserX,      desc: 'Defesa em crimes contra a ordem econômica, lavagem de dinheiro, crimes tributários, corrupção e demais infrações penais empresariais.' },
-  { title: 'Previdenciário',          icon: BookOpen,   desc: 'Aposentadorias, pensões, revisões de benefícios, planejamento previdenciário e defesa em processos junto ao INSS e à Justiça Federal.' },
-  { title: 'Propriedade Intelectual', icon: Lightbulb,  desc: 'Registro e proteção de marcas, patentes, direitos autorais, combate à pirataria e disputas envolvendo ativos intangíveis.' },
-  { title: 'Societário',              icon: Building2,  desc: 'Constituição e reestruturação de empresas, fusões, aquisições, contratos sociais, governança corporativa e dissolução societária.' },
-  { title: 'Trabalhista',             icon: Briefcase,  desc: 'Defesa de empresas e trabalhadores em reclamações trabalhistas, consultoria preventiva, compliance e gestão de passivos trabalhistas.' },
+  { title: 'Administrativo', icon: FileText, desc: 'Assessoria em licitações, contratos com o poder público, impugnações e recursos administrativos perante órgãos governamentais.' },
+  { title: 'Ambiental', icon: Leaf, desc: 'Consultoria em licenciamentos ambientais, defesa em infrações, regularização fundiária e compliance ambiental para empresas.' },
+  { title: 'Civil', desc: 'Atuação em contratos, responsabilidade civil, cobranças, direito de família, herança, partilha de bens e disputas imobiliárias.', icon: Users },
+  { title: 'Comercial', icon: Home, desc: 'Estruturação e revisão de contratos empresariais, defesa em litígios comerciais, relações entre sócios e recuperação de crédito.' },
+  { title: 'Fiscal e Tributário', icon: TrendingUp, desc: 'Planejamento tributário, defesa em autuações fiscais, recuperação de tributos pagos indevidamente e consultoria para redução da carga fiscal.' },
+  { title: 'Internacional', icon: Globe, desc: 'Consultoria em negócios transfronteiriços, contratos internacionais, arbitragem, importação/exportação e investimento estrangeiro.' },
+  { title: 'Penal e Econômico', icon: UserX, desc: 'Defesa em crimes contra a ordem econômica, lavagem de dinheiro, crimes tributários, corrupção e demais infrações penais empresariais.' },
+  { title: 'Previdenciário', icon: BookOpen, desc: 'Aposentadorias, pensões, revisões de benefícios, planejamento previdenciário e defesa em processos junto ao INSS e à Justiça Federal.' },
+  { title: 'Propriedade Intelectual', icon: Lightbulb, desc: 'Registro e proteção de marcas, patentes, direitos autorais, combate à pirataria e disputas envolvendo ativos intangíveis.' },
+  { title: 'Societário', icon: Building2, desc: 'Constituição e reestruturação de empresas, fusões, aquisições, contratos sociais, governança corporativa e dissolução societária.' },
+  { title: 'Trabalhista', icon: Briefcase, desc: 'Defesa de empresas e trabalhadores em reclamações trabalhistas, consultoria preventiva, compliance e gestão de passivos trabalhistas.' },
 ];
 
 const TESTIMONIALS = [
@@ -72,9 +72,9 @@ export default function App() {
           <meta name="description" content="Excelência e suporte integral em todas as esferas do Direito, do consultivo ao contencioso. Defesa estratégica e soluções jurídicas multidisciplinares." />
           <meta property="og:title" content="Elias Neto Advogados Associados | Especialistas Jurídicos" />
           <meta property="og:description" content="Defesa Estratégica e Soluções Jurídicas Multidisciplinares. Excelência e suporte integral em todas as esferas do Direito." />
-          <meta property="og:url" content="https://eliasneto.com.br" />
+          <meta property="og:url" content="https://eliasneto.brunorosa.tech" />
           <meta property="og:site_name" content="Elias Neto Advogados Associados" />
-          <meta property="og:image" content="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=1200" />
+          <meta property="og:image" content="https://eliasneto.com.br/images/temp/pag1.jpg" />
           <meta property="og:type" content="website" />
           <meta name="theme-color" content="#0F172A" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -83,10 +83,9 @@ export default function App() {
         </Helmet>
 
         {/* --- NAVBAR --- */}
-        <header 
-          className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-            isScrolled ? 'bg-navy shadow-xl py-3' : 'bg-transparent py-6'
-          }`}
+        <header
+          className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-navy shadow-xl py-3' : 'bg-transparent py-6'
+            }`}
         >
           <nav className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
             <a href="#inicio" aria-label="Elias Neto Advogados Associados">
@@ -116,8 +115,8 @@ export default function App() {
             </ul>
 
             {/* Mobile Toggle */}
-            <button 
-              className="md:hidden text-ice p-2" 
+            <button
+              className="md:hidden text-ice p-2"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Menu"
             >
@@ -150,8 +149,8 @@ export default function App() {
           <section id="inicio" className="relative h-screen flex items-center overflow-hidden">
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
-              <img 
-                src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80&w=1920" 
+              <img
+                src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80&w=1920"
                 alt="Escritório de Associados"
                 className="w-full h-full object-cover grayscale brightness-[0.2]"
               />
@@ -169,7 +168,7 @@ export default function App() {
                   Excelência e suporte integral em todas as esferas do Direito, do consultivo ao contencioso.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <a 
+                  <a
                     href={WHATSAPP_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -178,7 +177,7 @@ export default function App() {
                     <MessageCircle size={24} />
                     Falar com Especialista
                   </a>
-                  <a 
+                  <a
                     href="#atuacao"
                     className="flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-ice border border-white/20 font-bold py-5 px-10 rounded-2xl text-lg transition-all backdrop-blur-sm"
                   >
@@ -195,10 +194,10 @@ export default function App() {
           </section>
 
           {/* --- SERVICES GRID --- */}
-          <section id="atuacao" className="py-24 md:py-32" style={{backgroundColor: '#1E293B'}}>
+          <section id="atuacao" className="py-24 md:py-32" style={{ backgroundColor: '#1E293B' }}>
             <div className="max-w-7xl mx-auto px-4 md:px-8">
               <div className="mb-12">
-                <h2 className="text-3xl md:text-4xl text-ice font-serif font-bold pb-6" style={{borderBottom: '3px solid #8B0000'}}>
+                <h2 className="text-3xl md:text-4xl text-ice font-serif font-bold pb-6" style={{ borderBottom: '3px solid #8B0000' }}>
                   Áreas de Atuação
                 </h2>
               </div>
@@ -210,11 +209,10 @@ export default function App() {
                     <button
                       key={i}
                       onClick={() => setActiveService(isActive ? null : i)}
-                      className={`flex flex-col items-center justify-center gap-4 p-6 md:p-8 transition-all duration-300 group cursor-pointer text-left ${
-                        isActive
+                      className={`flex flex-col items-center justify-center gap-4 p-6 md:p-8 transition-all duration-300 group cursor-pointer text-left ${isActive
                           ? 'bg-crimson text-white'
                           : 'text-slate-400 hover:bg-white/5 hover:text-white'
-                      }`}
+                        }`}
                       style={{ backgroundColor: isActive ? '#8B0000' : '#1E293B' }}
                     >
                       <s.icon size={32} className={`transition-transform duration-300 ${isActive ? 'scale-110' : 'group-hover:scale-110'}`} />
@@ -715,7 +713,7 @@ export default function App() {
                 </p>
                 <div className="flex gap-4">
                   <a href="https://instagram.com/eliasneto.adv" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-crimson transition-colors text-ice">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
                   </a>
                 </div>
               </div>
@@ -772,7 +770,7 @@ export default function App() {
             className="bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform active:scale-95 group"
             aria-label="Instagram"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
             <span className="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-navy text-ice text-sm font-bold px-4 py-2 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap hidden md:block">
               Siga no Instagram
             </span>
