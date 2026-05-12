@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     init(initYear);
     init(initChat);
     init(initContactForm);
+    init(initWhatsAppLinks);
     
     // Initialize Lucide Icons
     try {
@@ -205,68 +206,49 @@ function initSmoothScroll() {
     });
 }
 
+// ── WhatsApp Greeting Helpers ──
+function getGreeting() {
+    const hour = new Date().getHours();
+    if (hour >= 5 && hour < 12) return 'Bom dia';
+    if (hour >= 12 && hour < 18) return 'Boa tarde';
+    return 'Boa noite';
+}
+
+function getWhatsAppUrl(customText) {
+    const text = customText || `Olá, Elis! ${getGreeting()}! Vim pelo site e gostaria de saber mais sobre as consultas.`;
+    return `https://api.whatsapp.com/send?phone=5531999756192&text=${encodeURIComponent(text)}`;
+}
+
+function initWhatsAppLinks() {
+    document.querySelectorAll('[data-whatsapp]').forEach(el => {
+        const url = getWhatsAppUrl();
+        if (el.tagName === 'A') {
+            el.href = url;
+        } else {
+            el.addEventListener('click', () => window.open(url, '_blank', 'noopener,noreferrer'));
+        }
+    });
+}
+
 // ── Contact Form Submit ──
 function initContactForm() {
     const form = document.getElementById('contactForm');
     if (!form) return;
 
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', (e) => {
         e.preventDefault();
 
         // Honeypot: robôs preenchem campos ocultos — aborta silenciosamente
         if (form.website && form.website.value !== '') return;
 
-        // Desafio lógico: valida resposta humana
-        const humanCheck = document.getElementById('human-check');
-        if (!humanCheck || humanCheck.value.trim() !== '5') {
-            humanCheck.setCustomValidity('Resposta incorreta. Tente novamente.');
-            humanCheck.reportValidity();
-            humanCheck.value = '';
-            return;
-        }
+        const name = form.name.value.trim();
+        const phone = form.phone.value.trim();
+        const message = form.message.value.trim();
 
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = 'Enviando... <i data-lucide="loader" class="w-5 h-5 animate-spin"></i>';
-        submitBtn.disabled = true;
+        const text = `Olá, Elis! ${getGreeting()}! Vim pelo site e gostaria de entrar em contato.\n\n*Nome:* ${name}\n*Telefone:* ${phone}\n\n*Mensagem:* ${message}`;
+        const url = getWhatsAppUrl(text);
 
-        try {
-            if (typeof lucide !== 'undefined') lucide.createIcons();
-        } catch (e) {}
-
-        const formData = {
-            name: form.name.value,
-            phone: form.phone.value,
-            email: form.email.value,
-            message: form.message.value
-        };
-
-        try {
-            // Nota: Ajustar a URL caso o backend seja hospedado em outro local.
-            const response = await fetch('http://localhost:3000/send-email', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            });
-
-            if (response.ok) {
-                alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-                form.reset();
-            } else {
-                const errorData = await response.json();
-                alert(errorData.error || 'Erro ao enviar a mensagem. Tente novamente.');
-            }
-        } catch (error) {
-            console.error('Erro de conexão:', error);
-            alert('Erro de conexão com o servidor. Verifique sua internet ou tente novamente mais tarde.');
-        } finally {
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-            try {
-                if (typeof lucide !== 'undefined') lucide.createIcons();
-            } catch (e) {}
-        }
+        form.reset();
+        window.open(url, '_blank', 'noopener,noreferrer');
     });
 }
