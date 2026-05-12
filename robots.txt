@@ -1,2 +1,7 @@
 User-agent: *
 Allow: /
+
+# Bloquear arquivos desnecessários para indexação
+Disallow: /og-image.jpg
+
+Sitemap: https://brunorosa.tech/sitemap.xml

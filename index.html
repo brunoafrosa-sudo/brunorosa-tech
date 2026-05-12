@@ -8,6 +8,10 @@
         content="Bruno Rosa - Desenvolvedor Web e Engineering Manager com mais de 10 anos de experiência. Criação de Landing Pages, Otimização de Sites e Consultoria Digital.">
     <meta name="author" content="Bruno Rosa">
     <meta name="robots" content="index, follow">
+    <meta name="keywords" content="desenvolvedor web freelancer, landing page, criação de sites, consultoria digital, otimização de performance, pagespeed, SEO, engineering manager, Bruno Rosa">
+    <meta name="theme-color" content="#0a0f18">
+    <link rel="canonical" href="https://brunorosa.tech/">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://brunorosa.tech/">
@@ -31,6 +35,9 @@
     <meta name="twitter:image" content="https://brunorosa.tech/og-image.jpg">
 
     <title>Bruno Rosa | Desenvolvimento Web & Consultoria Digital</title>
+
+    <!-- Preload imagem hero para melhorar LCP -->
+    <link rel="preload" as="image" href="foto-bruno.png">
 
     <!-- Google Fonts: Inter — non-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -256,6 +263,101 @@
             border-color: #1e293b;
         }
     </style>
+
+    <!-- Schema.org: ProfessionalService + Person (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://brunorosa.tech/#business",
+          "name": "Bruno Rosa – Desenvolvimento Web & Consultoria Digital",
+          "url": "https://brunorosa.tech/",
+          "logo": "https://brunorosa.tech/og-image.jpg",
+          "image": "https://brunorosa.tech/og-image.jpg",
+          "description": "Criação de Landing Pages de alta conversão, otimização de performance (PageSpeed 100/100), consultoria digital e manutenção de sites para pequenas e médias empresas.",
+          "priceRange": "$$",
+          "telephone": "+55-31-98454-7873",
+          "email": "brunoaf.rosa@gmail.com",
+          "areaServed": {
+            "@type": "Country",
+            "name": "Brasil"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/in/bruno-rosa-ti/"
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Serviços de Desenvolvimento Web",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Landing Pages de Alta Conversão",
+                  "description": "Páginas focadas em resultados: design profissional, carregamento ultrarrápido e copywriting que converte visitantes em clientes. Performance 100/100 garantida."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Otimização de Performance (PageSpeed)",
+                  "description": "Diagnóstico completo e otimização para nota máxima no PageSpeed Insights e Core Web Vitals."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Consultoria para Digitalização",
+                  "description": "Mapeamento de gargalos do negócio e apresentação de soluções digitais que geram eficiência e escala."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Manutenção e Suporte Contínuo",
+                  "description": "Planos mensais de manutenção com atualizações de conteúdo, monitoramento de performance, backups e suporte técnico."
+                }
+              }
+            ]
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://brunorosa.tech/#person",
+          "name": "Bruno Rosa",
+          "url": "https://brunorosa.tech/",
+          "image": "https://brunorosa.tech/foto-bruno.png",
+          "jobTitle": "Engineering Manager & Desenvolvedor Web Freelancer",
+          "description": "Mais de 10 anos transformando negócios com tecnologia. Engineering Manager com experiência em Paraná Banco, UolEdtech, Unimed-BH, Feluma e PMI-MG.",
+          "email": "brunoaf.rosa@gmail.com",
+          "telephone": "+55-31-98454-7873",
+          "sameAs": [
+            "https://www.linkedin.com/in/bruno-rosa-ti/"
+          ],
+          "alumniOf": [
+            {
+              "@type": "EducationalOrganization",
+              "name": "IBMEC",
+              "description": "Liderança Executiva e MBA Gerenciamento de Projetos"
+            },
+            {
+              "@type": "EducationalOrganization",
+              "name": "Faculdade Pitágoras",
+              "description": "Sistemas para Internet"
+            }
+          ],
+          "worksFor": {
+            "@id": "https://brunorosa.tech/#business"
+          }
+        }
+      ]
+    }
+    </script>
 
     <script>
             // Aplicar tema salvo antes do render para evitar flash
@@ -1253,6 +1355,56 @@
         </section>
 
     </main>
+
+    <!-- Schema.org: FAQPage (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quanto tempo demora para criar um site?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para uma Landing Page, o prazo médio é de 5 a 10 dias úteis após a coleta de todos os materiais (textos, fotos, cores). Sites institucionais mais completos podem levar de 2 a 4 semanas. Trabalho com um processo estruturado para garantir agilidade sem abrir mão da qualidade."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O site é adaptável para celular (responsivo)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim, 100%. Todos os projetos são desenvolvidos com abordagem mobile-first, garantindo que o site funcione perfeitamente em celulares, tablets e desktops. Mais de 60% dos acessos hoje vêm de dispositivos móveis."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como funciona a manutenção após a entrega?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ofereço planos mensais de manutenção que incluem atualizações de conteúdo, monitoramento de performance, backups e suporte técnico via WhatsApp. Os planos são personalizados conforme a necessidade de cada cliente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Com que tipo de empresa você trabalha?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Atendo principalmente profissionais liberais (médicos, advogados, psicólogos, fisioterapeutas) e pequenas e médias empresas que querem ter uma presença digital profissional."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como funciona o processo de orçamento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "É simples: entre em contato via WhatsApp ou e-mail, me conta sobre o seu negócio e o que precisa. Em até 24 horas úteis envio uma proposta personalizada e sem compromisso. Caso aprovada, combinamos o prazo, assino um contrato simples e começamos. Sem surpresas no processo."
+          }
+        }
+      ]
+    }
+    </script>
 
     <!-- Footer / Contato -->
     <footer id="contato" class="py-24 relative overflow-hidden bg-charcoal-900">
