@@ -198,6 +198,20 @@
 
         /* Cookie consent carregado de forma lazy */
         #cookieconsent-wrapper { display: none; }
+
+        /* Acessibilidade: links de conteúdo de texto devem ser distinguíveis além da cor.
+           Links em parágrafos de texto corrido recebem sublinhado por padrão do navegador,
+           mas links no footer e em parágrafos de texto precisam de indicador adicional. */
+        footer a:not([class*="text-pink"]) {
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        /* Focus visible melhorado para navegação por teclado */
+        :focus-visible {
+            outline: 2px solid #db2777;
+            outline-offset: 2px;
+            border-radius: 2px;
+        }
     </style>
 </head>
 
@@ -208,19 +222,21 @@
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 md:h-20">
                 <a href="#inicio" class="flex items-center">
+                    <!-- srcset responsivo: logo-sm (mobile 48px) e logo-lg (desktop 72px), ambos redimensionados -->
                     <picture>
-                        <source srcset="assets/logo-shirley.webp" type="image/webp">
-                        <img src="assets/logo-shirley.png" alt="Shirley Pires Podóloga"
-                            width="72" height="72"
-                            style="max-height:48px;width:auto;"
-                            class="md:hidden"
-                            fetchpriority="high">
-                    </picture>
-                    <picture class="hidden md:block">
-                        <source srcset="assets/logo-shirley.webp" type="image/webp">
-                        <img src="assets/logo-shirley.png" alt="Shirley Pires Podóloga"
-                            width="120" height="120"
-                            style="max-height:72px;width:auto;"
+                        <source
+                            media="(min-width: 768px)"
+                            srcset="assets/logo-shirley-lg.webp"
+                            type="image/webp"
+                            width="120" height="82">
+                        <source
+                            srcset="assets/logo-shirley-sm.webp"
+                            type="image/webp"
+                            width="72" height="49">
+                        <img src="assets/logo-shirley.png"
+                            alt="Shirley Pires Podóloga"
+                            width="72" height="49"
+                            style="height:48px;width:auto;"
                             fetchpriority="high">
                     </picture>
                 </a>
@@ -337,7 +353,7 @@
                                 </span>
                                 <div>
                                     <p class="text-sm font-bold text-slate-900">10+ Anos</p>
-                                    <p class="text-xs text-slate-500">de Experiência</p>
+                                    <p class="text-xs text-slate-600">de Experiência</p>
                                 </div>
                             </div>
                         </div>
@@ -517,26 +533,26 @@
                 <!-- Linha 3: Card destaque full-width -->
                 <div class="grid grid-cols-1 gap-6">
                     <div class="rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col md:flex-row"
-                        style="border: 1px solid #29D9DF40; border-top: 4px solid #29D9DF;">
+                        style="border: 1px solid #cff8fb; border-top: 4px solid #0e9aab;">
 
                         <!-- Mobile: hero com bg-image + overlay -->
                         <div class="relative md:hidden h-64 flex items-end"
                             style="background-image: url('assets/foto-11.jpeg'); background-size: cover; background-position: center;">
                             <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.72) 40%, rgba(0,0,0,0.18) 100%);"></div>
                             <div class="relative z-10 p-5 w-full">
-                                <span class="text-xs font-semibold uppercase tracking-wide px-3 py-1 rounded-full mb-3 inline-block" style="background-color:rgba(41,217,223,0.25); color:#29D9DF;">Destaque</span>
+                                <span class="text-xs font-semibold uppercase tracking-wide px-3 py-1 rounded-full mb-3 inline-block" style="background-color:rgba(41,217,223,0.25); color:#0e9aab;">Destaque</span>
                                 <h3 class="text-xl font-bold text-white mb-1">Podogeriatria e Cuidado Especializado</h3>
                                 <p class="text-sm text-slate-200 leading-relaxed">Atendimento preventivo e curativo para idosos, focando na mobilidade e no conforto.</p>
                             </div>
                         </div>
 
-                        <!-- Desktop: imagem lateral -->
+                        <!-- Desktop: imagem lateral — WebP 640x1138, exibida em ~40% do container -->
                         <div class="hidden md:block md:w-2/5 overflow-hidden" style="min-height:280px;">
                             <picture>
-                                <source srcset="assets/foto-11.webp" type="image/webp">
+                                <source srcset="assets/foto-11.webp" type="image/webp" width="640" height="1138">
                                 <img src="assets/foto-11.jpeg"
                                     alt="Podóloga Shirley Pires atendendo paciente idoso"
-                                    width="560" height="374"
+                                    width="640" height="1138"
                                     class="w-full h-full object-cover object-center"
                                     loading="lazy" decoding="async">
                             </picture>
@@ -545,13 +561,13 @@
                         <!-- Conteúdo desktop -->
                         <div class="hidden md:flex bg-white p-8 flex-col justify-center md:w-3/5">
                             <div class="flex items-center gap-3 mb-4">
-                                <div class="w-12 h-12 flex items-center justify-center rounded-lg flex-shrink-0" style="background-color:#29D9DF20;">
-                                    <svg class="w-6 h-6" style="color:#29D9DF;" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <div class="w-12 h-12 flex items-center justify-center rounded-lg flex-shrink-0" style="background-color:#cff8fb;">
+                                    <svg class="w-6 h-6" style="color:#0e7a87;" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                     </svg>
                                 </div>
-                                <span class="text-xs font-semibold uppercase tracking-wide px-3 py-1 rounded-full" style="background-color:#29D9DF20; color:#29D9DF;">Destaque</span>
+                                <span class="text-xs font-semibold uppercase tracking-wide px-3 py-1 rounded-full" style="background-color:#cff8fb; color:#0e7a87;">Destaque</span>
                             </div>
                             <h3 class="text-xl font-bold text-slate-900 mb-3">Podogeriatria e Cuidado Especializado</h3>
                             <p class="text-sm text-slate-600 leading-relaxed">Atendimento preventivo e curativo para idosos, focando na mobilidade e no conforto. Especialização em Pés Diabéticos para garantir a máxima segurança.</p>
@@ -573,29 +589,31 @@
                 </div>
                 <!-- Layout editorial: foto destaque + grade 2×2 -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    <!-- Foto destaque — dimensões explícitas para evitar CLS -->
+                    <!-- Foto destaque: exibida em ~50vw (desktop) ou 100vw (mobile), altura 480px -->
                     <div class="relative group cursor-pointer rounded-2xl overflow-hidden shadow-md"
                         style="height:480px;"
                         onclick="openLightbox('assets/foto-8.jpeg')">
                         <picture>
-                            <source srcset="assets/foto-8.webp" type="image/webp">
+                            <!-- WebP redimensionado para 390x520 (display size 2x) -->
+                            <source srcset="assets/foto-8.webp" type="image/webp" width="390" height="520">
                             <img src="assets/foto-8.jpeg" alt="Shirley Pires no CIAP 2022"
-                                width="640" height="480"
+                                width="390" height="520"
                                 class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                                 loading="lazy" decoding="async">
                         </picture>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                         <span class="absolute bottom-4 left-4 bg-pink-600 text-white text-xs font-semibold px-3 py-1 rounded-full">CIAP 2022</span>
                     </div>
-                    <!-- Grade 2×2 -->
+                    <!-- Grade 2×2: cada célula exibida em ~25vw (desktop) ou ~50vw (mobile), altura 224px -->
                     <div class="grid grid-cols-2 gap-4">
                         <div class="relative group cursor-pointer rounded-2xl overflow-hidden shadow-md"
                             style="height:224px;"
                             onclick="openLightbox('assets/foto-7.jpeg')">
                             <picture>
-                                <source srcset="assets/foto-7.webp" type="image/webp">
+                                <!-- WebP redimensionado para 600x800 (display size 2x ~292px) -->
+                                <source srcset="assets/foto-7.webp" type="image/webp" width="600" height="800">
                                 <img src="assets/foto-7.jpeg" alt="Shirley Pires no CIAP — Congressista"
-                                    width="300" height="224"
+                                    width="600" height="800"
                                     class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                                     loading="lazy" decoding="async">
                             </picture>
@@ -606,9 +624,10 @@
                             style="height:224px;"
                             onclick="openLightbox('assets/foto-6.jpeg')">
                             <picture>
-                                <source srcset="assets/foto-6.webp" type="image/webp">
+                                <!-- WebP redimensionado para 600x800 (display size 2x ~292px) -->
+                                <source srcset="assets/foto-6.webp" type="image/webp" width="600" height="800">
                                 <img src="assets/foto-6.jpeg" alt="Shirley Pires no CNP 2022"
-                                    width="300" height="224"
+                                    width="600" height="800"
                                     class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                                     loading="lazy" decoding="async">
                             </picture>
@@ -619,9 +638,10 @@
                             style="height:224px;"
                             onclick="openLightbox('assets/foto-4.jpeg')">
                             <picture>
-                                <source srcset="assets/foto-4.webp" type="image/webp">
+                                <!-- WebP redimensionado para 293x520 (display size 2x ~146x224) -->
+                                <source srcset="assets/foto-4.webp" type="image/webp" width="293" height="520">
                                 <img src="assets/foto-4.jpeg" alt="Shirley Pires no 4º CPP 2025"
-                                    width="300" height="224"
+                                    width="293" height="520"
                                     class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                                     loading="lazy" decoding="async">
                             </picture>
@@ -632,9 +652,10 @@
                             style="height:224px;"
                             onclick="openLightbox('assets/foto-5.jpeg')">
                             <picture>
-                                <source srcset="assets/foto-5.webp" type="image/webp">
+                                <!-- WebP redimensionado para 293x520 (display size 2x ~146x224) -->
+                                <source srcset="assets/foto-5.webp" type="image/webp" width="293" height="520">
                                 <img src="assets/foto-5.jpeg" alt="Shirley Pires no 4º CPP 2025"
-                                    width="300" height="224"
+                                    width="293" height="520"
                                     class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                                     loading="lazy" decoding="async">
                             </picture>
@@ -684,7 +705,7 @@
                             <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">MF</div>
                             <div>
                                 <p class="text-sm font-semibold text-slate-900">Maria Fernanda S.</p>
-                                <span class="text-xs bg-pink-50 text-pink-600 px-2 py-0.5 rounded-full">Unhas Encravadas</span>
+                                <span class="text-xs bg-pink-100 text-pink-800 px-2 py-0.5 rounded-full font-medium">Unhas Encravadas</span>
                             </div>
                         </div>
                     </div>
@@ -699,7 +720,7 @@
                             <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">JC</div>
                             <div>
                                 <p class="text-sm font-semibold text-slate-900">José Carlos M.</p>
-                                <span class="text-xs bg-pink-50 text-pink-600 px-2 py-0.5 rounded-full">Pés Diabéticos</span>
+                                <span class="text-xs bg-pink-100 text-pink-800 px-2 py-0.5 rounded-full font-medium">Pés Diabéticos</span>
                             </div>
                         </div>
                     </div>
@@ -714,7 +735,7 @@
                             <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">AL</div>
                             <div>
                                 <p class="text-sm font-semibold text-slate-900">Ana Lúcia P.</p>
-                                <span class="text-xs bg-pink-50 text-pink-600 px-2 py-0.5 rounded-full">Calos e Calosidades</span>
+                                <span class="text-xs bg-pink-100 text-pink-800 px-2 py-0.5 rounded-full font-medium">Calos e Calosidades</span>
                             </div>
                         </div>
                     </div>
@@ -729,7 +750,7 @@
                             <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">RC</div>
                             <div>
                                 <p class="text-sm font-semibold text-slate-900">Rosana C.</p>
-                                <span class="text-xs bg-pink-50 text-pink-600 px-2 py-0.5 rounded-full">Podogeriatria</span>
+                                <span class="text-xs bg-pink-100 text-pink-800 px-2 py-0.5 rounded-full font-medium">Podogeriatria</span>
                             </div>
                         </div>
                     </div>
@@ -744,7 +765,7 @@
                             <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">PT</div>
                             <div>
                                 <p class="text-sm font-semibold text-slate-900">Paulo T.</p>
-                                <span class="text-xs bg-pink-50 text-pink-600 px-2 py-0.5 rounded-full">Micose e Fungos</span>
+                                <span class="text-xs bg-pink-100 text-pink-800 px-2 py-0.5 rounded-full font-medium">Micose e Fungos</span>
                             </div>
                         </div>
                     </div>
@@ -759,7 +780,7 @@
                             <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">CB</div>
                             <div>
                                 <p class="text-sm font-semibold text-slate-900">Cláudia B.</p>
-                                <span class="text-xs bg-pink-50 text-pink-600 px-2 py-0.5 rounded-full">Fissuras</span>
+                                <span class="text-xs bg-pink-100 text-pink-800 px-2 py-0.5 rounded-full font-medium">Fissuras</span>
                             </div>
                         </div>
                     </div>
@@ -907,9 +928,10 @@
                     <!-- Formulário -->
                     <div class="bg-slate-50 rounded-xl p-6 sm:p-8">
                         <form id="contact-form" class="space-y-4" novalidate>
-                            <!-- Honeypot -->
+                            <!-- Honeypot: visualmente oculto via CSS, sem aria-hidden (proibido em inputs) -->
                             <input type="text" name="website" tabindex="-1" autocomplete="off"
-                                style="position:absolute;left:-9999px;opacity:0;" aria-hidden="true">
+                                style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;opacity:0;"
+                                id="website-trap" aria-label="Não preencha este campo">
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
@@ -972,13 +994,13 @@
                 <div class="text-center md:text-left">
                     <p class="font-serif font-bold text-lg">Shirley Pires <span class="text-pink-400">|</span> Podologia</p>
                     <p class="text-sm text-slate-400 mt-1">R. Corcovado, 1211 - Monte Castelo, Contagem - MG</p>
-                    <p class="text-xs text-slate-500 mt-1">CNPJ: 30.074.749/0001-44</p>
+                    <p class="text-xs text-slate-400 mt-1">CNPJ: 30.074.749/0001-44</p>
                 </div>
                 <div class="text-center md:text-right">
                     <p class="text-sm text-slate-400">&copy; <span id="footer-year"></span> Shirley Pires Podologia.
                         Todos os direitos reservados.
                     </p>
-                    <p class="text-xs text-slate-500 mt-1">Desenvolvido por <a href="https://brunorosa.tech"
+                    <p class="text-xs text-slate-400 mt-1">Desenvolvido por <a href="https://brunorosa.tech"
                             target="_blank" rel="noopener noreferrer"
                             class="text-pink-400 hover:text-pink-300 transition">brunorosa.tech</a></p>
                 </div>
