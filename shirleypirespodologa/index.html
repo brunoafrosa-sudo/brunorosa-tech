@@ -129,14 +129,26 @@
         ]
     }
     </script>
+
+    <!-- Preload da imagem LCP para antecipar download -->
+    <link rel="preload" as="image" href="foto-removebg-preview.webp" type="image/webp">
+
+    <!-- Preconnect para fontes — reduz latência de conexão -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Fontes carregadas de forma não-bloqueante (media=print + onload) -->
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
+
+    <!-- Tailwind CSS via CDN (necessário para o projeto atual) -->
     <script>
-        tailwind.config = {
+        // Tailwind config inline — carregado antes do CDN para configuração correta
+        window.tailwindConfig = {
             theme: {
                 extend: {
                     fontFamily: {
@@ -148,25 +160,27 @@
                     }
                 }
             }
-        }
+        };
     </script>
+    <script>
+        // Carrega Tailwind de forma assíncrona evitando bloquear o parser
+        (function(){
+            var s=document.createElement('script');
+            s.src='https://cdn.tailwindcss.com';
+            s.onload=function(){if(window.tailwind&&window.tailwindConfig)tailwind.config=window.tailwindConfig;};
+            document.head.appendChild(s);
+        })();
+    </script>
+
     <style>
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
+        /* Fallback de fontes enquanto carrega — evita FOUT perceptível */
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+        h1,h2,h3,.font-serif { font-family: 'Lora', Georgia, serif; }
 
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #db2777;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #be185d;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #db2777; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #be185d; }
 
         /* Justificação de textos de conteúdo */
         p:not(.no-justify) {
@@ -174,16 +188,17 @@
             hyphens: auto;
             -webkit-hyphens: auto;
         }
-    </style>
 
-    <!-- Microsoft Clarity — heatmaps e gravação de sessões -->
-    <script>
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "wq1hbjsfrt");
-    </script>
+        /* Estabilização de layout para imagens — previne CLS */
+        img { display: block; }
+
+        /* Espaço reservado para logo durante carregamento — evita CLS */
+        .logo-placeholder { width: 48px; height: 48px; }
+        @media (min-width: 768px) { .logo-placeholder { width: 72px; height: 72px; } }
+
+        /* Cookie consent carregado de forma lazy */
+        #cookieconsent-wrapper { display: none; }
+    </style>
 </head>
 
 <body id="inicio" class="font-sans text-slate-700 bg-white antialiased">
@@ -193,10 +208,21 @@
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 md:h-20">
                 <a href="#inicio" class="flex items-center">
-                    <img src="assets/logo-shirley.png" alt="Shirley Pires Podóloga" style="max-height:48px;"
-                        class="w-auto md:hidden">
-                    <img src="assets/logo-shirley.png" alt="Shirley Pires Podóloga" style="max-height:72px;"
-                        class="w-auto hidden md:block">
+                    <picture>
+                        <source srcset="assets/logo-shirley.webp" type="image/webp">
+                        <img src="assets/logo-shirley.png" alt="Shirley Pires Podóloga"
+                            width="72" height="72"
+                            style="max-height:48px;width:auto;"
+                            class="md:hidden"
+                            fetchpriority="high">
+                    </picture>
+                    <picture class="hidden md:block">
+                        <source srcset="assets/logo-shirley.webp" type="image/webp">
+                        <img src="assets/logo-shirley.png" alt="Shirley Pires Podóloga"
+                            width="120" height="120"
+                            style="max-height:72px;width:auto;"
+                            fetchpriority="high">
+                    </picture>
                 </a>
                 <!-- Desktop -->
                 <div class="hidden md:flex items-center gap-6">
@@ -219,12 +245,10 @@
                 <!-- Mobile toggle -->
                 <button id="menu-toggle" class="md:hidden p-2 text-slate-600 hover:text-brand" aria-label="Abrir menu"
                     aria-expanded="false" aria-controls="mobile-menu">
-                    <!-- Hamburger icon -->
                     <svg id="icon-menu" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
-                    <!-- Close icon -->
                     <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M6 18L18 6M6 6l12 12" />
@@ -278,7 +302,7 @@
                             <a href="https://wa.me/5531994419648?text=Ol%C3%A1%2C%20Shirley!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20consulta."
                                 target="_blank" rel="noopener noreferrer"
                                 class="inline-flex items-center justify-center gap-2 bg-pink-600 text-white font-semibold px-8 py-3.5 rounded-lg hover:bg-pink-700 transition shadow-lg hover:shadow-xl">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path
                                         d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                                 </svg>
@@ -293,13 +317,20 @@
                     <!-- Image -->
                     <div class="order-1 md:order-2 relative flex justify-center">
                         <div class="relative">
-                            <img src="foto-removebg-preview.png" alt="Shirley Pires — Podóloga Clínica"
-                                class="w-full max-w-[320px] sm:max-w-[400px] h-auto sm:h-[500px] object-cover rounded-2xl shadow-lg border-4 border-pink-600"
-                                loading="lazy">
+                            <!-- LCP image: fetchpriority=high, sem lazy loading, com dimensões explícitas -->
+                            <picture>
+                                <source srcset="foto-removebg-preview.webp" type="image/webp">
+                                <img src="foto-removebg-preview.png"
+                                    alt="Shirley Pires — Podóloga Clínica"
+                                    width="400" height="500"
+                                    fetchpriority="high"
+                                    decoding="async"
+                                    class="w-full max-w-[320px] sm:max-w-[400px] h-auto sm:h-[500px] object-cover rounded-2xl shadow-lg border-4 border-pink-600">
+                            </picture>
                             <div
                                 class="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg px-5 py-3 flex items-center gap-3">
                                 <span class="bg-pink-100 text-pink-600 rounded-full p-2">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
@@ -328,7 +359,7 @@
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div class="bg-slate-50 rounded-xl p-6 shadow-sm border-t-4 border-pink-600">
                         <div class="bg-pink-50 w-10 h-10 flex items-center justify-center rounded-lg mb-3">
-                            <svg class="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 14l9-5-9-5-9 5 9 5z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -342,7 +373,7 @@
                     </div>
                     <div class="bg-slate-50 rounded-xl p-6 shadow-sm border-t-4 border-pink-600">
                         <div class="bg-pink-50 w-10 h-10 flex items-center justify-center rounded-lg mb-3">
-                            <svg class="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                             </svg>
@@ -354,7 +385,7 @@
                     </div>
                     <div class="bg-slate-50 rounded-xl p-6 shadow-sm border-t-4 border-pink-600">
                         <div class="bg-pink-50 w-10 h-10 flex items-center justify-center rounded-lg mb-3">
-                            <svg class="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
@@ -365,7 +396,7 @@
                     </div>
                     <div class="bg-slate-50 rounded-xl p-6 shadow-sm border-t-4 border-pink-600">
                         <div class="bg-pink-50 w-10 h-10 flex items-center justify-center rounded-lg mb-3">
-                            <svg class="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
@@ -389,14 +420,12 @@
                     <p class="text-slate-600 max-w-2xl mx-auto no-justify text-center">Tratamentos podológicos com técnicas modernas,
                         biossegurança e atendimento humanizado.</p>
                 </div>
-                <!-- Linha 1: 4 cards — grid de 4 colunas no desktop -->
+                <!-- Linha 1: 4 cards -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
 
-                    <!-- Serviço 1 -->
-                    <div
-                        class="bg-white border border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-t-4 border-t-pink-600">
+                    <div class="bg-white border border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-t-4 border-t-pink-600">
                         <div class="bg-pink-50 w-12 h-12 flex items-center justify-center rounded-lg mb-4">
-                            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                             </svg>
@@ -406,11 +435,9 @@
                             indolores para correção e prevenção de unhas encravadas.</p>
                     </div>
 
-                    <!-- Serviço 2 -->
-                    <div
-                        class="bg-white border border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-t-4 border-t-pink-600">
+                    <div class="bg-white border border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-t-4 border-t-pink-600">
                         <div class="bg-pink-50 w-12 h-12 flex items-center justify-center rounded-lg mb-4">
-                            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                             </svg>
@@ -420,11 +447,9 @@
                             aliviando dor e desconforto ao caminhar.</p>
                     </div>
 
-                    <!-- Serviço 3 -->
-                    <div
-                        class="bg-white border border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-t-4 border-t-pink-600">
+                    <div class="bg-white border border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-t-4 border-t-pink-600">
                         <div class="bg-pink-50 w-12 h-12 flex items-center justify-center rounded-lg mb-4">
-                            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                             </svg>
@@ -434,11 +459,9 @@
                             interdigitais com acompanhamento contínuo.</p>
                     </div>
 
-                    <!-- Serviço 4 -->
-                    <div
-                        class="bg-white border border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-t-4 border-t-pink-600">
+                    <div class="bg-white border border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-t-4 border-t-pink-600">
                         <div class="bg-pink-50 w-12 h-12 flex items-center justify-center rounded-lg mb-4">
-                            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                             </svg>
@@ -450,14 +473,12 @@
 
                 </div>
 
-                <!-- Linha 2: 3 cards centralizados — grid de 6 colunas para centralizar -->
+                <!-- Linha 2: 3 cards -->
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
 
-                    <!-- Serviço 5 -->
-                    <div
-                        class="bg-white border border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-t-4 border-t-pink-600">
+                    <div class="bg-white border border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-t-4 border-t-pink-600">
                         <div class="bg-pink-50 w-12 h-12 flex items-center justify-center rounded-lg mb-4">
-                            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                             </svg>
@@ -467,11 +488,9 @@
                             especializado para pacientes diabéticos, evitando complicações.</p>
                     </div>
 
-                    <!-- Serviço 6 -->
-                    <div
-                        class="bg-white border border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-t-4 border-t-pink-600">
+                    <div class="bg-white border border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-t-4 border-t-pink-600">
                         <div class="bg-pink-50 w-12 h-12 flex items-center justify-center rounded-lg mb-4">
-                            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
@@ -481,11 +500,9 @@
                             verrugas plantares com técnicas adequadas.</p>
                     </div>
 
-                    <!-- Serviço 7 -->
-                    <div
-                        class="bg-white border border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-t-4 border-t-pink-600">
+                    <div class="bg-white border border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-t-4 border-t-pink-600">
                         <div class="bg-pink-50 w-12 h-12 flex items-center justify-center rounded-lg mb-4">
-                            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                             </svg>
@@ -499,13 +516,10 @@
 
                 <!-- Linha 3: Card destaque full-width -->
                 <div class="grid grid-cols-1 gap-6">
-
-                    <!-- Serviço Destaque: Podogeriatria -->
-                    <!-- Mobile: background-image com overlay | Desktop: flex-row com imagem lateral -->
                     <div class="rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col md:flex-row"
                         style="border: 1px solid #29D9DF40; border-top: 4px solid #29D9DF;">
 
-                        <!-- Mobile: hero com bg-image + overlay. Desktop: oculto, imagem lateral assume -->
+                        <!-- Mobile: hero com bg-image + overlay -->
                         <div class="relative md:hidden h-64 flex items-end"
                             style="background-image: url('assets/foto-11.jpeg'); background-size: cover; background-position: center;">
                             <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.72) 40%, rgba(0,0,0,0.18) 100%);"></div>
@@ -516,19 +530,23 @@
                             </div>
                         </div>
 
-                        <!-- Desktop: imagem lateral (oculta no mobile) -->
-                        <div class="hidden md:block md:w-2/5 overflow-hidden">
-                            <img src="assets/foto-11.jpeg"
-                                alt="Podóloga Shirley Pires atendendo paciente idoso"
-                                class="w-full h-full object-cover object-center"
-                                loading="lazy" decoding="async">
+                        <!-- Desktop: imagem lateral -->
+                        <div class="hidden md:block md:w-2/5 overflow-hidden" style="min-height:280px;">
+                            <picture>
+                                <source srcset="assets/foto-11.webp" type="image/webp">
+                                <img src="assets/foto-11.jpeg"
+                                    alt="Podóloga Shirley Pires atendendo paciente idoso"
+                                    width="560" height="374"
+                                    class="w-full h-full object-cover object-center"
+                                    loading="lazy" decoding="async">
+                            </picture>
                         </div>
 
-                        <!-- Conteúdo desktop (oculto no mobile, já exibido no overlay acima) -->
+                        <!-- Conteúdo desktop -->
                         <div class="hidden md:flex bg-white p-8 flex-col justify-center md:w-3/5">
                             <div class="flex items-center gap-3 mb-4">
                                 <div class="w-12 h-12 flex items-center justify-center rounded-lg flex-shrink-0" style="background-color:#29D9DF20;">
-                                    <svg class="w-6 h-6" style="color:#29D9DF;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-6 h-6" style="color:#29D9DF;" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                     </svg>
@@ -539,7 +557,6 @@
                             <p class="text-sm text-slate-600 leading-relaxed">Atendimento preventivo e curativo para idosos, focando na mobilidade e no conforto. Especialização em Pés Diabéticos para garantir a máxima segurança.</p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -550,69 +567,79 @@
                 <div class="text-center mb-14">
                     <span
                         class="inline-block bg-pink-100 text-pink-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide mb-3">Congressos</span>
-                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 mb-4">Participações em Eventos
-                    </h2>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 mb-4">Participações em Eventos</h2>
                     <p class="text-slate-600 max-w-2xl mx-auto no-justify text-center">Atualização constante nas maiores referências da
                         podologia nacional — CIAP 2022, CNP 2022 e 4º CPP 2025.</p>
                 </div>
                 <!-- Layout editorial: foto destaque + grade 2×2 -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    <!-- Foto destaque -->
-                    <div class="relative group cursor-pointer rounded-2xl overflow-hidden shadow-md h-[480px]"
+                    <!-- Foto destaque — dimensões explícitas para evitar CLS -->
+                    <div class="relative group cursor-pointer rounded-2xl overflow-hidden shadow-md"
+                        style="height:480px;"
                         onclick="openLightbox('assets/foto-8.jpeg')">
-                        <img src="assets/foto-8.jpeg" alt="Shirley Pires no CIAP 2022"
-                            class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                            loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
-                        </div>
-                        <span
-                            class="absolute bottom-4 left-4 bg-pink-600 text-white text-xs font-semibold px-3 py-1 rounded-full">CIAP
-                            2022</span>
+                        <picture>
+                            <source srcset="assets/foto-8.webp" type="image/webp">
+                            <img src="assets/foto-8.jpeg" alt="Shirley Pires no CIAP 2022"
+                                width="640" height="480"
+                                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                                loading="lazy" decoding="async">
+                        </picture>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        <span class="absolute bottom-4 left-4 bg-pink-600 text-white text-xs font-semibold px-3 py-1 rounded-full">CIAP 2022</span>
                     </div>
                     <!-- Grade 2×2 -->
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="relative group cursor-pointer rounded-2xl overflow-hidden shadow-md h-56"
+                        <div class="relative group cursor-pointer rounded-2xl overflow-hidden shadow-md"
+                            style="height:224px;"
                             onclick="openLightbox('assets/foto-7.jpeg')">
-                            <img src="assets/foto-7.jpeg" alt="Shirley Pires no CIAP — Congressista"
-                                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                                loading="lazy">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent">
-                            </div>
-                            <span
-                                class="absolute bottom-3 left-3 bg-pink-600 text-white text-xs font-semibold px-2.5 py-0.5 rounded-full">CIAP</span>
+                            <picture>
+                                <source srcset="assets/foto-7.webp" type="image/webp">
+                                <img src="assets/foto-7.jpeg" alt="Shirley Pires no CIAP — Congressista"
+                                    width="300" height="224"
+                                    class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                                    loading="lazy" decoding="async">
+                            </picture>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                            <span class="absolute bottom-3 left-3 bg-pink-600 text-white text-xs font-semibold px-2.5 py-0.5 rounded-full">CIAP</span>
                         </div>
-                        <div class="relative group cursor-pointer rounded-2xl overflow-hidden shadow-md h-56"
+                        <div class="relative group cursor-pointer rounded-2xl overflow-hidden shadow-md"
+                            style="height:224px;"
                             onclick="openLightbox('assets/foto-6.jpeg')">
-                            <img src="assets/foto-6.jpeg" alt="Shirley Pires no CNP 2022"
-                                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                                loading="lazy">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent">
-                            </div>
-                            <span
-                                class="absolute bottom-3 left-3 bg-pink-600 text-white text-xs font-semibold px-2.5 py-0.5 rounded-full">CNP
-                                2022</span>
+                            <picture>
+                                <source srcset="assets/foto-6.webp" type="image/webp">
+                                <img src="assets/foto-6.jpeg" alt="Shirley Pires no CNP 2022"
+                                    width="300" height="224"
+                                    class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                                    loading="lazy" decoding="async">
+                            </picture>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                            <span class="absolute bottom-3 left-3 bg-pink-600 text-white text-xs font-semibold px-2.5 py-0.5 rounded-full">CNP 2022</span>
                         </div>
-                        <div class="relative group cursor-pointer rounded-2xl overflow-hidden shadow-md h-56"
+                        <div class="relative group cursor-pointer rounded-2xl overflow-hidden shadow-md"
+                            style="height:224px;"
                             onclick="openLightbox('assets/foto-4.jpeg')">
-                            <img src="assets/foto-4.jpeg" alt="Shirley Pires no 4º CPP 2025"
-                                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                                loading="lazy">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent">
-                            </div>
-                            <span
-                                class="absolute bottom-3 left-3 bg-pink-600 text-white text-xs font-semibold px-2.5 py-0.5 rounded-full">4º
-                                CPP 2025</span>
+                            <picture>
+                                <source srcset="assets/foto-4.webp" type="image/webp">
+                                <img src="assets/foto-4.jpeg" alt="Shirley Pires no 4º CPP 2025"
+                                    width="300" height="224"
+                                    class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                                    loading="lazy" decoding="async">
+                            </picture>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                            <span class="absolute bottom-3 left-3 bg-pink-600 text-white text-xs font-semibold px-2.5 py-0.5 rounded-full">4º CPP 2025</span>
                         </div>
-                        <div class="relative group cursor-pointer rounded-2xl overflow-hidden shadow-md h-56"
+                        <div class="relative group cursor-pointer rounded-2xl overflow-hidden shadow-md"
+                            style="height:224px;"
                             onclick="openLightbox('assets/foto-5.jpeg')">
-                            <img src="assets/foto-5.jpeg" alt="Shirley Pires no 4º CPP 2025"
-                                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                                loading="lazy">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent">
-                            </div>
-                            <span
-                                class="absolute bottom-3 left-3 bg-pink-600 text-white text-xs font-semibold px-2.5 py-0.5 rounded-full">4º
-                                CPP 2025</span>
+                            <picture>
+                                <source srcset="assets/foto-5.webp" type="image/webp">
+                                <img src="assets/foto-5.jpeg" alt="Shirley Pires no 4º CPP 2025"
+                                    width="300" height="224"
+                                    class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                                    loading="lazy" decoding="async">
+                            </picture>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                            <span class="absolute bottom-3 left-3 bg-pink-600 text-white text-xs font-semibold px-2.5 py-0.5 rounded-full">4º CPP 2025</span>
                         </div>
                     </div>
                 </div>
@@ -645,18 +672,16 @@
                     <p class="text-slate-600 max-w-2xl mx-auto no-justify text-center">Depoimentos de quem já experimentou nosso atendimento e
                         cuidado.</p>
                 </div>
-                <!-- Mobile: scroll horizontal com snap | Desktop: grid 3 colunas -->
                 <div class="flex md:grid md:grid-cols-3 gap-6 md:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none pb-4 md:pb-0 -mx-4 md:mx-0 px-4 md:px-0 scroll-smooth">
 
-                    <!-- Depoimento 1 -->
                     <div class="bg-slate-50 rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow duration-300 relative flex-shrink-0 w-[80vw] sm:w-[60vw] md:w-auto snap-start">
-                        <span class="text-6xl font-serif text-pink-200 absolute top-4 right-6 leading-none">"</span>
-                        <div class="flex items-center gap-1 text-yellow-400 mb-3">
-                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        <span class="text-6xl font-serif text-pink-200 absolute top-4 right-6 leading-none" aria-hidden="true">"</span>
+                        <div class="flex items-center gap-1 text-yellow-400 mb-3" aria-label="5 estrelas">
+                            <span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span>
                         </div>
                         <p class="text-slate-600 text-sm leading-relaxed mb-6">Profissional excelente! Tratou minha unha encravada com muito cuidado e sem dor. Recomendo a todos que precisam de um atendimento humanizado e competente.</p>
                         <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
-                            <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-bold text-sm">MF</div>
+                            <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">MF</div>
                             <div>
                                 <p class="text-sm font-semibold text-slate-900">Maria Fernanda S.</p>
                                 <span class="text-xs bg-pink-50 text-pink-600 px-2 py-0.5 rounded-full">Unhas Encravadas</span>
@@ -664,15 +689,14 @@
                         </div>
                     </div>
 
-                    <!-- Depoimento 2 -->
                     <div class="bg-slate-50 rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow duration-300 relative flex-shrink-0 w-[80vw] sm:w-[60vw] md:w-auto snap-start">
-                        <span class="text-6xl font-serif text-pink-200 absolute top-4 right-6 leading-none">"</span>
-                        <div class="flex items-center gap-1 text-yellow-400 mb-3">
-                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        <span class="text-6xl font-serif text-pink-200 absolute top-4 right-6 leading-none" aria-hidden="true">"</span>
+                        <div class="flex items-center gap-1 text-yellow-400 mb-3" aria-label="5 estrelas">
+                            <span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span>
                         </div>
                         <p class="text-slate-600 text-sm leading-relaxed mb-6">Sou diabético e a Shirley cuida dos meus pés com muita atenção e profissionalismo. Me sinto seguro sabendo que estou em boas mãos. Atendimento nota 10!</p>
                         <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
-                            <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-bold text-sm">JC</div>
+                            <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">JC</div>
                             <div>
                                 <p class="text-sm font-semibold text-slate-900">José Carlos M.</p>
                                 <span class="text-xs bg-pink-50 text-pink-600 px-2 py-0.5 rounded-full">Pés Diabéticos</span>
@@ -680,15 +704,14 @@
                         </div>
                     </div>
 
-                    <!-- Depoimento 3 -->
                     <div class="bg-slate-50 rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow duration-300 relative flex-shrink-0 w-[80vw] sm:w-[60vw] md:w-auto snap-start">
-                        <span class="text-6xl font-serif text-pink-200 absolute top-4 right-6 leading-none">"</span>
-                        <div class="flex items-center gap-1 text-yellow-400 mb-3">
-                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        <span class="text-6xl font-serif text-pink-200 absolute top-4 right-6 leading-none" aria-hidden="true">"</span>
+                        <div class="flex items-center gap-1 text-yellow-400 mb-3" aria-label="5 estrelas">
+                            <span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span>
                         </div>
                         <p class="text-slate-600 text-sm leading-relaxed mb-6">Estava sofrendo muito com calos e fui muito bem atendida. O ambiente é limpo, organizado e a Shirley é super atenciosa. Meus pés nunca estiveram tão bem!</p>
                         <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
-                            <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-bold text-sm">AL</div>
+                            <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">AL</div>
                             <div>
                                 <p class="text-sm font-semibold text-slate-900">Ana Lúcia P.</p>
                                 <span class="text-xs bg-pink-50 text-pink-600 px-2 py-0.5 rounded-full">Calos e Calosidades</span>
@@ -696,15 +719,14 @@
                         </div>
                     </div>
 
-                    <!-- Depoimento 4 -->
                     <div class="bg-slate-50 rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow duration-300 relative flex-shrink-0 w-[80vw] sm:w-[60vw] md:w-auto snap-start">
-                        <span class="text-6xl font-serif text-pink-200 absolute top-4 right-6 leading-none">"</span>
-                        <div class="flex items-center gap-1 text-yellow-400 mb-3">
-                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        <span class="text-6xl font-serif text-pink-200 absolute top-4 right-6 leading-none" aria-hidden="true">"</span>
+                        <div class="flex items-center gap-1 text-yellow-400 mb-3" aria-label="5 estrelas">
+                            <span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span>
                         </div>
                         <p class="text-slate-600 text-sm leading-relaxed mb-6">Minha mãe idosa é paciente da Shirley há mais de 2 anos. O cuidado com ela é incrível — pontual, gentil e muito profissional. Nos sentimos acolhidos em cada consulta.</p>
                         <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
-                            <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-bold text-sm">RC</div>
+                            <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">RC</div>
                             <div>
                                 <p class="text-sm font-semibold text-slate-900">Rosana C.</p>
                                 <span class="text-xs bg-pink-50 text-pink-600 px-2 py-0.5 rounded-full">Podogeriatria</span>
@@ -712,15 +734,14 @@
                         </div>
                     </div>
 
-                    <!-- Depoimento 5 -->
                     <div class="bg-slate-50 rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow duration-300 relative flex-shrink-0 w-[80vw] sm:w-[60vw] md:w-auto snap-start">
-                        <span class="text-6xl font-serif text-pink-200 absolute top-4 right-6 leading-none">"</span>
-                        <div class="flex items-center gap-1 text-yellow-400 mb-3">
-                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        <span class="text-6xl font-serif text-pink-200 absolute top-4 right-6 leading-none" aria-hidden="true">"</span>
+                        <div class="flex items-center gap-1 text-yellow-400 mb-3" aria-label="5 estrelas">
+                            <span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span>
                         </div>
                         <p class="text-slate-600 text-sm leading-relaxed mb-6">Tinha micose nas unhas há anos e nenhum tratamento resolvia. Com a Shirley, em poucos meses vi uma melhora enorme. Materiais esterilizados e consultório impecável!</p>
                         <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
-                            <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-bold text-sm">PT</div>
+                            <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">PT</div>
                             <div>
                                 <p class="text-sm font-semibold text-slate-900">Paulo T.</p>
                                 <span class="text-xs bg-pink-50 text-pink-600 px-2 py-0.5 rounded-full">Micose e Fungos</span>
@@ -728,15 +749,14 @@
                         </div>
                     </div>
 
-                    <!-- Depoimento 6 -->
                     <div class="bg-slate-50 rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow duration-300 relative flex-shrink-0 w-[80vw] sm:w-[60vw] md:w-auto snap-start">
-                        <span class="text-6xl font-serif text-pink-200 absolute top-4 right-6 leading-none">"</span>
-                        <div class="flex items-center gap-1 text-yellow-400 mb-3">
-                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        <span class="text-6xl font-serif text-pink-200 absolute top-4 right-6 leading-none" aria-hidden="true">"</span>
+                        <div class="flex items-center gap-1 text-yellow-400 mb-3" aria-label="5 estrelas">
+                            <span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span>
                         </div>
                         <p class="text-slate-600 text-sm leading-relaxed mb-6">Fissuras profundas nos calcanhares me impediam de caminhar sem dor. Após três sessões com a Shirley, meus pés estão completamente recuperados. Serviço de altíssima qualidade!</p>
                         <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
-                            <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-bold text-sm">CB</div>
+                            <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">CB</div>
                             <div>
                                 <p class="text-sm font-semibold text-slate-900">Cláudia B.</p>
                                 <span class="text-xs bg-pink-50 text-pink-600 px-2 py-0.5 rounded-full">Fissuras</span>
@@ -746,18 +766,17 @@
 
                 </div>
 
-                <!-- Link para todas as avaliações -->
                 <div class="text-center mt-10">
                     <a href="https://share.google/L1ML6Yy6CR3a3BBbC" target="_blank" rel="noopener noreferrer"
                         class="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 border border-slate-200 bg-white px-6 py-3 rounded-full shadow-sm hover:shadow-md hover:border-pink-300 hover:text-pink-600 transition-all duration-200">
-                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
                             <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
                             <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
                             <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
                         </svg>
                         Ver todas as avaliações no Google
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                         </svg>
                     </a>
@@ -773,8 +792,7 @@
                     <span
                         class="inline-block bg-pink-100 text-pink-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide mb-3">FAQ</span>
                     <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 mb-4">Perguntas Frequentes</h2>
-                    <p class="text-slate-600 max-w-xl mx-auto no-justify text-center">Tire suas dúvidas sobre podologia e nossos atendimentos.
-                    </p>
+                    <p class="text-slate-600 max-w-xl mx-auto no-justify text-center">Tire suas dúvidas sobre podologia e nossos atendimentos.</p>
                 </div>
                 <div class="space-y-4">
                     <details class="group bg-white rounded-xl border border-slate-100 overflow-hidden">
@@ -782,7 +800,7 @@
                             class="flex items-center justify-between cursor-pointer px-6 py-4 font-semibold text-slate-900 hover:text-pink-600 transition list-none">
                             Podologia dói?
                             <svg class="w-5 h-5 text-pink-600 shrink-0 transition-transform group-open:rotate-180"
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M19 9l-7 7-7-7" />
                             </svg>
@@ -795,7 +813,7 @@
                             class="flex items-center justify-between cursor-pointer px-6 py-4 font-semibold text-slate-900 hover:text-pink-600 transition list-none">
                             Qual a diferença entre pedicure e podologia?
                             <svg class="w-5 h-5 text-pink-600 shrink-0 transition-transform group-open:rotate-180"
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M19 9l-7 7-7-7" />
                             </svg>
@@ -809,7 +827,7 @@
                             class="flex items-center justify-between cursor-pointer px-6 py-4 font-semibold text-slate-900 hover:text-pink-600 transition list-none">
                             Pé diabético precisa de cuidado especial?
                             <svg class="w-5 h-5 text-pink-600 shrink-0 transition-transform group-open:rotate-180"
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M19 9l-7 7-7-7" />
                             </svg>
@@ -834,12 +852,11 @@
                 </div>
                 <div class="grid md:grid-cols-2 gap-12">
 
-                    <!-- Info -->
                     <div class="space-y-6">
                         <div class="flex items-start gap-4">
-                            <div class="bg-pink-50 p-3 rounded-lg">
+                            <div class="bg-pink-50 p-3 rounded-lg flex-shrink-0">
                                 <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
+                                    viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -848,14 +865,13 @@
                             </div>
                             <div>
                                 <h3 class="font-semibold text-slate-900">Endereço</h3>
-                                <p class="text-sm text-slate-600">R. Corcovado, 1211 - Monte Castelo,<br>Contagem - MG
-                                </p>
+                                <p class="text-sm text-slate-600">R. Corcovado, 1211 - Monte Castelo,<br>Contagem - MG</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-4">
-                            <div class="bg-pink-50 p-3 rounded-lg">
+                            <div class="bg-pink-50 p-3 rounded-lg flex-shrink-0">
                                 <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
+                                    viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                 </svg>
@@ -866,9 +882,9 @@
                             </div>
                         </div>
                         <div class="flex items-start gap-4">
-                            <div class="bg-pink-50 p-3 rounded-lg">
+                            <div class="bg-pink-50 p-3 rounded-lg flex-shrink-0">
                                 <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
+                                    viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
@@ -878,7 +894,7 @@
                                 <p class="text-sm text-slate-600">Seg - Sex: 08h às 18h<br>Sáb: 08h às 12h</p>
                             </div>
                         </div>
-                        <!-- Google Maps embed placeholder -->
+                        <!-- Google Maps — carregado lazy para não bloquear LCP -->
                         <div class="rounded-xl overflow-hidden shadow-md mt-4 h-52 sm:h-72 lg:h-96">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3751.0!2d-44.06!3d-19.93!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sR.+Corcovado%2C+1211+-+Monte+Castelo%2C+Contagem+-+MG!5e0!3m2!1spt-BR!2sbr!4v1"
@@ -895,7 +911,6 @@
                             <input type="text" name="website" tabindex="-1" autocomplete="off"
                                 style="position:absolute;left:-9999px;opacity:0;" aria-hidden="true">
 
-                            <!-- Nome e Telefone em uma linha -->
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
                                     <label for="nome" class="block text-sm font-medium text-slate-700 mb-1">Nome
@@ -937,7 +952,6 @@
                                     class="w-full h-28 sm:h-40 px-4 py-2.5 rounded-lg border border-slate-200 focus:ring-2 focus:ring-pink-500 focus:border-pink-500 outline-none transition text-sm resize-none"></textarea>
                             </div>
 
-                            <!-- Submit -->
                             <button type="submit"
                                 class="w-full bg-pink-600 text-white font-semibold py-3 rounded-lg hover:bg-pink-700 transition shadow-md hover:shadow-lg">
                                 Enviar Mensagem
@@ -956,8 +970,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
                 <div class="text-center md:text-left">
-                    <p class="font-serif font-bold text-lg">Shirley Pires <span class="text-pink-400">|</span> Podologia
-                    </p>
+                    <p class="font-serif font-bold text-lg">Shirley Pires <span class="text-pink-400">|</span> Podologia</p>
                     <p class="text-sm text-slate-400 mt-1">R. Corcovado, 1211 - Monte Castelo, Contagem - MG</p>
                     <p class="text-xs text-slate-500 mt-1">CNPJ: 30.074.749/0001-44</p>
                 </div>
@@ -975,20 +988,18 @@
 
     <!-- ========== FLOATING BUTTONS ========== -->
     <div class="fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col gap-3 sm:gap-4">
-        <!-- Instagram -->
         <a href="https://www.instagram.com/shirleypirespodologa/" target="_blank" rel="noopener noreferrer"
             aria-label="Siga-nos no Instagram"
             class="bg-gradient-to-tr from-yellow-400 via-pink-600 to-purple-600 text-white p-3 sm:p-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-center">
-            <svg class="w-5 h-5 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
                     d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
             </svg>
         </a>
-        <!-- WhatsApp -->
         <a href="https://wa.me/5531994419648?text=Ol%C3%A1%2C%20Shirley!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20consulta."
             target="_blank" rel="noopener noreferrer" aria-label="Fale conosco pelo WhatsApp"
             class="bg-green-500 hover:bg-green-600 text-white p-3 sm:p-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-center">
-            <svg class="w-5 h-5 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
                     d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
             </svg>
@@ -1007,24 +1018,23 @@
             document.getElementById('lightbox').classList.add('hidden');
             document.body.style.overflow = '';
         }
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
 
         // Mobile menu toggle
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const iconMenu = document.getElementById('icon-menu');
-        const iconClose = document.getElementById('icon-close');
-        menuToggle.addEventListener('click', () => {
-            const isOpen = !mobileMenu.classList.contains('hidden');
+        var menuToggle = document.getElementById('menu-toggle');
+        var mobileMenu = document.getElementById('mobile-menu');
+        var iconMenu = document.getElementById('icon-menu');
+        var iconClose = document.getElementById('icon-close');
+        menuToggle.addEventListener('click', function() {
+            var isOpen = !mobileMenu.classList.contains('hidden');
             mobileMenu.classList.toggle('hidden');
             iconMenu.classList.toggle('hidden', !isOpen);
             iconClose.classList.toggle('hidden', isOpen);
-            menuToggle.setAttribute('aria-expanded', !isOpen);
+            menuToggle.setAttribute('aria-expanded', String(!isOpen));
         });
 
-        // Close mobile menu on link click
-        mobileMenu.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.addEventListener('click', () => {
+        mobileMenu.querySelectorAll('a[href^="#"]').forEach(function(link) {
+            link.addEventListener('click', function() {
                 mobileMenu.classList.add('hidden');
                 iconMenu.classList.remove('hidden');
                 iconClose.classList.add('hidden');
@@ -1035,46 +1045,64 @@
         document.getElementById('footer-year').textContent = new Date().getFullYear();
 
         // Form submission
-        const form = document.getElementById('contact-form');
-
-        form.addEventListener('submit', function (e) {
+        var form = document.getElementById('contact-form');
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
-
-            // Honeypot check
-            const honeypot = form.querySelector('input[name="website"]');
+            var honeypot = form.querySelector('input[name="website"]');
             if (honeypot && honeypot.value !== '') return;
-
-            const nome = form.nome.value.trim();
-            const telefone = form.telefone.value.trim();
-            const servico = form.servico.value;
-            const mensagem = form.mensagem.value.trim();
-
-            let msg = 'Olá, Shirley! Vim pelo site.\n';
+            var nome = form.nome.value.trim();
+            var telefone = form.telefone.value.trim();
+            var servico = form.servico.value;
+            var mensagem = form.mensagem.value.trim();
+            var msg = 'Olá, Shirley! Vim pelo site.\n';
             msg += '📋 Nome: ' + nome + '\n';
             msg += '📱 Telefone: ' + telefone + '\n';
             msg += '🦶 Serviço: ' + servico + '\n';
             if (mensagem) msg += '💬 Mensagem: ' + mensagem + '\n';
-
             window.open('https://wa.me/5531994419648?text=' + encodeURIComponent(msg), '_blank');
             form.reset();
         });
-    </script>
 
-    <!-- Cookie Consent -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.0.1/build/cookieconsent.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.0.1/build/cookieconsent.min.js"></script>
-    <script>
-        window.cookieconsent.initialise({
-            palette: {
-                popup: { background: "#0f172a", text: "#f1f5f9" },
-                button: { background: "#db2777", text: "#ffffff" }
-            },
-            content: {
-                message: "Este site utiliza cookies para melhorar sua experiência de navegação.",
-                dismiss: "Entendi!",
-                link: ""
-            }
-        });
+        // Carrega scripts de terceiros de forma lazy (após interação ou idle)
+        function loadThirdPartyScripts() {
+            // Microsoft Clarity
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window,document,"clarity","script","wq1hbjsfrt");
+
+            // Cookie Consent
+            var ccCss = document.createElement('link');
+            ccCss.rel = 'stylesheet';
+            ccCss.href = 'https://cdn.jsdelivr.net/npm/cookieconsent@3.0.1/build/cookieconsent.min.css';
+            document.head.appendChild(ccCss);
+
+            var ccJs = document.createElement('script');
+            ccJs.src = 'https://cdn.jsdelivr.net/npm/cookieconsent@3.0.1/build/cookieconsent.min.js';
+            ccJs.onload = function() {
+                window.cookieconsent.initialise({
+                    palette: {
+                        popup: { background: "#0f172a", text: "#f1f5f9" },
+                        button: { background: "#db2777", text: "#ffffff" }
+                    },
+                    content: {
+                        message: "Este site utiliza cookies para melhorar sua experiência de navegação.",
+                        dismiss: "Entendi!",
+                        link: ""
+                    }
+                });
+            };
+            document.body.appendChild(ccJs);
+        }
+
+        // Carrega após idle ou na primeira interação do usuário
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(loadThirdPartyScripts, { timeout: 3000 });
+        } else {
+            // Fallback: carrega após 2s para não impactar LCP/TBT
+            setTimeout(loadThirdPartyScripts, 2000);
+        }
     </script>
 
 </body>
