@@ -1,16 +1,26 @@
 'use client'
 
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 
-const navLinks = [
-  { href: '#servicos', label: 'Serviços' },
-  { href: '#depoimentos', label: 'Depoimentos' },
-  { href: '#checklist', label: 'Checklist Grátis' },
-  { href: '#contato', label: 'Contato' },
+const sections = [
+  { hash: 'servicos', label: 'Serviços' },
+  { hash: 'depoimentos', label: 'Depoimentos' },
+  { hash: 'calculadora', label: 'CLT vs PJ' },
+  { hash: 'checklist', label: 'Checklist Grátis' },
+  { hash: 'guias', label: 'Guias' },
+  { hash: 'contato', label: 'Contato' },
 ]
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const pathname = usePathname()
+  const isHome = pathname === '/'
+
+  // Na home: ancora direta. Nas demais páginas: volta à home na seção correta.
+  function href(hash: string) {
+    return isHome ? `#${hash}` : `/#${hash}`
+  }
 
   return (
     <header className="sticky top-0 z-40 shadow-md" style={{ backgroundColor: 'var(--color-accent)' }}>
@@ -26,18 +36,18 @@ export default function Header() {
         {/* Desktop Nav */}
         <nav aria-label="Menu principal" className="hidden md:block">
           <ul className="flex items-center gap-6" role="list">
-            {navLinks.map((link) => (
-              <li key={link.href}>
+            {sections.map((s) => (
+              <li key={s.hash}>
                 <a
-                  href={link.href}
+                  href={href(s.hash)}
                   className="text-sm font-medium text-white transition-colors duration-150 hover:text-primary-light"
                 >
-                  {link.label}
+                  {s.label}
                 </a>
               </li>
             ))}
             <li>
-              <a href="#contato" className="btn-primary text-sm">
+              <a href={href('contato')} className="btn-primary text-sm">
                 Falar com especialista
               </a>
             </li>
@@ -74,20 +84,20 @@ export default function Header() {
           style={{ backgroundColor: 'var(--color-accent)' }}
         >
           <ul className="flex flex-col px-4 py-4" role="list">
-            {navLinks.map((link) => (
-              <li key={link.href}>
+            {sections.map((s) => (
+              <li key={s.hash}>
                 <a
-                  href={link.href}
+                  href={href(s.hash)}
                   onClick={() => setMenuOpen(false)}
                   className="block py-3 text-sm font-medium text-white transition-colors hover:text-primary-light"
                 >
-                  {link.label}
+                  {s.label}
                 </a>
               </li>
             ))}
             <li className="pt-2">
               <a
-                href="#contato"
+                href={href('contato')}
                 onClick={() => setMenuOpen(false)}
                 className="btn-primary w-full justify-center"
               >

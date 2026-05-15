@@ -36,43 +36,48 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links rápidos */}
-          <nav aria-label="Links do rodapé">
-            <ul className="flex flex-wrap gap-6" role="list">
-              <li>
-                <a
-                  href="#servicos"
-                  className="text-sm text-white/70 transition-colors hover:text-white"
-                >
-                  Serviços
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#checklist"
-                  className="text-sm text-white/70 transition-colors hover:text-white"
-                >
-                  Checklist Grátis
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#contato"
-                  className="text-sm text-white/70 transition-colors hover:text-white"
-                >
-                  Contato
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/politica-de-privacidade"
-                  className="text-sm text-white/70 transition-colors hover:text-white"
-                >
-                  Privacidade
-                </a>
-              </li>
-            </ul>
-          </nav>
+          {/* Links */}
+          <div className="flex flex-wrap gap-10">
+            <nav aria-label="Links do rodapé">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-white/40">
+                Site
+              </p>
+              <ul className="flex flex-col gap-2" role="list">
+                {[
+                  { href: '#servicos', label: 'Serviços' },
+                  { href: '#calculadora', label: 'Calculadora CLT vs PJ' },
+                  { href: '#checklist', label: 'Checklist Grátis' },
+                  { href: '#contato', label: 'Contato' },
+                  { href: '/politica-de-privacidade', label: 'Privacidade' },
+                ].map(({ href, label }) => (
+                  <li key={href}>
+                    <a href={href} className="text-sm text-white/70 transition-colors hover:text-white">
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <nav aria-label="Guias por nicho">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-white/40">
+                Guias por Nicho
+              </p>
+              <ul className="flex flex-col gap-2" role="list">
+                {[
+                  { href: '/guias/contabilidade-para-arquitetos', label: 'Para Arquitetos' },
+                  { href: '/guias/contabilidade-para-engenheiros', label: 'Para Engenheiros' },
+                  { href: '/guias/abertura-de-empresa-para-arquitetos-e-engenheiros', label: 'Abertura de Empresa' },
+                ].map(({ href, label }) => (
+                  <li key={href}>
+                    <a href={href} className="text-sm text-white/70 transition-colors hover:text-white">
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
         </div>
 
         <p className="text-center text-xs text-white/40">

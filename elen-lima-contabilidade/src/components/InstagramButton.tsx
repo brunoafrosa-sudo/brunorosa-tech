@@ -7,17 +7,16 @@ export default function InstagramButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Siga Elen Lima no Instagram"
-      className="fixed bottom-6 left-6 z-40 flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-transform duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2"
+      className="fixed bottom-24 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-transform duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2"
       style={{
-        backgroundColor: '#E1306C',
-        color: 'white',
-        boxShadow: '0 4px 12px rgba(225, 48, 108, 0.4)',
-        outlineColor: '#E1306C',
+        background: 'radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)',
+        boxShadow: '0 4px 12px rgba(214, 36, 159, 0.4)',
+        outlineColor: '#d6249f',
       }}
     >
       <svg
         aria-hidden="true"
-        className="h-7 w-7"
+        className="h-7 w-7 text-white"
         fill="currentColor"
         viewBox="0 0 24 24"
       >

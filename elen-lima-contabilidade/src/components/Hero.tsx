@@ -76,15 +76,15 @@ export default function Hero() {
 
         {/* Imagem */}
         <div className="flex justify-center lg:justify-end">
-          <div className="relative h-80 w-80 overflow-hidden rounded-2xl border border-white/10 shadow-2xl sm:h-96 sm:w-96">
+          <div className="relative w-full max-w-sm overflow-hidden rounded-2xl border border-white/10 shadow-2xl sm:max-w-md lg:max-w-lg" style={{ aspectRatio: '4/5' }}>
             <Image
               src="/img/hero-elen.png"
               alt="Elen Lima — Contadora especialista em arquitetos e engenheiros em Contagem"
               fill
               priority
               fetchPriority="high"
-              className="object-cover object-top"
-              sizes="(max-width: 640px) 320px, 384px"
+              className="object-cover object-center"
+              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 448px, 512px"
             />
           </div>
         </div>

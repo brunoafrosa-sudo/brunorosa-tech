@@ -2,6 +2,8 @@ import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import SocialProof from '@/components/SocialProof'
 import Services from '@/components/Services'
+import CalculadoraCLTPJ from '@/components/CalculadoraCLTPJ'
+import GuiasNicho from '@/components/GuiasNicho'
 import LeadMagnet from '@/components/LeadMagnet'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
@@ -18,6 +20,8 @@ export default function Home() {
         <Hero />
         <SocialProof />
         <Services />
+        <CalculadoraCLTPJ />
+        <GuiasNicho />
         <LeadMagnet />
         <Contact />
       </main>
