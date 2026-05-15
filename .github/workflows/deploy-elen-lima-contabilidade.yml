@@ -35,4 +35,4 @@ jobs:
           # Envia apenas o conteúdo da pasta out (build estático do Next.js)
           local-dir: ./elen-lima-contabilidade/out/
           # Pasta de destino no seu FTP da Hostinger
-          server-dir: /domains/brunorosa.tech/public_html/elen-lima-contabilidade/
+          server-dir: /domains/brunorosa.tech/public_html/elen-lima-contabilidade/out/
