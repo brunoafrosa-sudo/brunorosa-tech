@@ -1,17 +1,2 @@
 Options -Indexes
 DirectoryIndex index.html
-
-RewriteEngine On
-RewriteBase /
-
-# Serve static files and directories directly
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [L]
-
-# For clean URLs: try /path/index.html
-RewriteCond %{REQUEST_FILENAME}/index.html -f
-RewriteRule ^(.+[^/])/?$ /$1/index.html [L]
-
-# Fallback to index.html
-RewriteRule ^ /index.html [L]
