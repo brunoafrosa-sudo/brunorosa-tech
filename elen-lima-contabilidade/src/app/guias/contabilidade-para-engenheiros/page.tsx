@@ -3,6 +3,7 @@ import { SITE_URL, SITE_NAME, WHATSAPP_PHONE } from '@/config/constants'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import WhatsAppButton from '@/components/WhatsAppButton'
+import InstagramButton from '@/components/InstagramButton'
 
 const SLUG = 'contabilidade-para-engenheiros'
 const TITLE = 'Contabilidade para Engenheiros'
@@ -249,6 +250,7 @@ export default function ContabilidadeParaEngenheiros() {
 
       <Footer />
       <WhatsAppButton />
+      <InstagramButton />
     </>
   )
 }

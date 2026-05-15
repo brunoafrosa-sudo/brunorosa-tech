@@ -3,6 +3,7 @@ import { SITE_URL, SITE_NAME, WHATSAPP_PHONE } from '@/config/constants'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import WhatsAppButton from '@/components/WhatsAppButton'
+import InstagramButton from '@/components/InstagramButton'
 
 const SLUG = 'abertura-de-empresa-para-arquitetos-e-engenheiros'
 const TITLE = 'Abertura de Empresa para Arquitetos e Engenheiros'
@@ -273,6 +274,7 @@ export default function AberturaEmpresaArquitetosEngenheiros() {
 
       <Footer />
       <WhatsAppButton />
+      <InstagramButton />
     </>
   )
 }
