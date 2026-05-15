@@ -42,10 +42,11 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     images: [
       {
-        url: `${SITE_URL}/img/og-preview-blue.jpg`,
+        url: `${SITE_URL}/img/og-image-whatsapp.jpg`,
         width: 1200,
         height: 630,
         alt: `${SITE_NAME} - Especialista em Arquitetos e Engenheiros`,
+        type: 'image/jpeg',
       },
     ],
     locale: 'pt_BR',
@@ -59,7 +60,7 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     images: [
       {
-        url: `${SITE_URL}/img/og-preview-blue.jpg`,
+        url: `${SITE_URL}/img/og-image-whatsapp.jpg`,
         alt: `${SITE_NAME} - Especialista em Arquitetos e Engenheiros`,
       },
     ],
