@@ -311,10 +311,10 @@
 
             <nav class="hidden md:flex items-center gap-10 text-sm font-medium">
                 <a href="#sobre" class="hover:text-primary transition-colors">Sobre mim</a>
-                <a href="#especialidades" class="hover:text-primary transition-colors">Especialidades</a>
                 <a href="#servicos" class="hover:text-primary transition-colors">Serviços</a>
-                <a href="#blog" class="hover:text-primary transition-colors">Blog</a>
                 <a href="#metodo" class="hover:text-primary transition-colors">Psicoterapia</a>
+                <a href="#especialidades" class="hover:text-primary transition-colors">Especialidades</a>
+                <a href="#blog" class="hover:text-primary transition-colors">Blog</a>
                 <div class="flex items-center gap-4 border-l border-black/10 pl-6 ml-2">
                     <a href="https://www.instagram.com/elisfonsecapsicologa/" target="_blank"
                         class="text-text-muted hover:text-primary transition-all hover:scale-110"
@@ -364,10 +364,10 @@
             <img src="assets/logo.png" alt="Elis Fonsêca Logo" class="h-20 w-auto mb-4">
             <nav class="flex flex-col items-center gap-8 text-xl font-medium">
                 <a href="#sobre" class="mobile-link hover:text-primary">Sobre mim</a>
-                <a href="#especialidades" class="mobile-link hover:text-primary">Especialidades</a>
                 <a href="#servicos" class="mobile-link hover:text-primary">Serviços</a>
-                <a href="#blog" class="mobile-link hover:text-primary">Blog</a>
                 <a href="#metodo" class="mobile-link hover:text-primary">Psicoterapia</a>
+                <a href="#especialidades" class="mobile-link hover:text-primary">Especialidades</a>
+                <a href="#blog" class="mobile-link hover:text-primary">Blog</a>
                 <a href="#contato" class="mobile-link bg-primary text-white px-8 py-3 rounded-full">Contato</a>
             </nav>
             <div class="flex gap-8 mt-8">
@@ -453,18 +453,32 @@
                             </svg>
                         </h2>
                         <div class="space-y-6 text-lg text-text-muted leading-relaxed mb-10">
-                            <p>
-                                Sou <span class="text-text-main font-semibold">Elis Fonsêca Cândido Rosa (CRP
-                                    04/39268)</span>, psicóloga clínica há mais de 10 anos. Minha trajetória é marcada
-                                pelo compromisso com o cuidado emocional e pelo olhar atento à singularidade de cada
-                                pessoa.
-                            </p>
-                            <p>
-                                Além da minha atuação profissional, também sou mãe, esposa e uma mulher em constante
-                                construção, assim como cada cliente que acolho. Ao longo da minha caminhada, também
-                                atuei na área social, experiência que ampliou meu olhar sensível para diferentes
-                                contextos.
-                            </p>
+                            <div class="overflow-hidden" style="display:-webkit-box;-webkit-line-clamp:9;line-clamp:9;-webkit-box-orient:vertical;">
+                                <p class="mb-6">
+                                    Sou psicóloga formada pela FEAD Minas desde 2012. Ao longo da minha trajetória
+                                    profissional, atuei em diferentes áreas da Psicologia, como Recursos Humanos e
+                                    Psicologia Social, experiências que ampliaram meu olhar sensível para os diversos
+                                    contextos da vida humana. Foi também nesse caminho que me especializei em Intervenção
+                                    Psicossocial no Contexto das Políticas Públicas pelo Centro Universitário UNA,
+                                    fortalecendo ainda mais minha compreensão sobre o cuidado emocional e as relações
+                                    humanas.
+                                </p>
+                                <p>
+                                    Em 2016, iniciei minha atuação clínica em uma instituição sem fins lucrativos voltada
+                                    ao acolhimento de mulheres e crianças em situação de violência. Foi nesse espaço que
+                                    descobri, de forma ainda mais profunda, o poder transformador da escuta clínica. Desde
+                                    então, passei a me dedicar intensamente à clínica psicológica, realizando especialização
+                                    em Terapia Cognitivo-Comportamental (TCC) pelo Centro Universitário Amparense – UNIFIA,
+                                    além de constantes cursos e atualizações na área.
+                                </p>
+                            </div>
+                            <button id="btn-sobre-modal"
+                                class="inline-flex items-center gap-2 text-primary font-semibold text-base hover:underline underline-offset-4 transition-colors mt-2">
+                                Ler tudo
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </button>
                         </div>
 
                         <!-- Timeline de Formação -->
@@ -472,16 +486,19 @@
                             <div class="bg-primary/5 p-6 rounded-3xl border border-primary/10">
                                 <span class="text-xs font-bold text-primary block mb-2">2013</span>
                                 <p class="text-sm font-semibold">Graduação em Psicologia</p>
+                                <p class="text-xs text-text-muted mt-1">FEAD Minas</p>
                             </div>
                             <div class="bg-primary/5 p-6 rounded-3xl border border-primary/10">
                                 <span class="text-xs font-bold text-primary block mb-2">2016</span>
                                 <p class="text-sm font-semibold">Pós-graduação em Intervenção Psicossocial no Contexto
                                     das Políticas Públicas</p>
+                                <p class="text-xs text-text-muted mt-1">Centro Universitário UNA</p>
                             </div>
                             <div class="bg-primary/5 p-6 rounded-3xl border border-primary/10">
                                 <span class="text-xs font-bold text-primary block mb-2">2020</span>
                                 <p class="text-sm font-semibold">Pós-graduação em Terapia Cognitivo-Comportamental (TCC)
                                 </p>
+                                <p class="text-xs text-text-muted mt-1">Centro Universitário Amparense – UNIFIA</p>
                             </div>
                         </div>
 
@@ -933,13 +950,21 @@
                                     Acredito na <span class="text-primary italic">transformação</span> que existe em
                                     você.
                                 </h3>
-                                <p class="text-xl text-text-muted leading-relaxed mb-0">
-                                    Meu propósito é caminhar ao seu lado, oferecendo suporte para que você possa
-                                    compreender
-                                    melhor seus sentimentos, organizar seus pensamentos e construir, gradualmente, uma
-                                    vida
-                                    com mais leveza, autonomia e sentido.
-                                </p>
+                                <div class="overflow-hidden text-xl text-text-muted leading-relaxed mb-4"
+                                    style="display:-webkit-box;-webkit-line-clamp:5;line-clamp:5;-webkit-box-orient:vertical;">
+                                    Acredito na força de transformação que existe em cada mulher, mesmo nos momentos
+                                    em que ela parece não conseguir enxergá-la. Meu propósito é oferecer um espaço de
+                                    acolhimento, escuta e cuidado, onde você possa se sentir segura para compreender
+                                    sua história, reconhecer seus sentimentos e reconstruir sua relação consigo mesma
+                                    com mais gentileza e consciência.
+                                </div>
+                                <button id="btn-proposito-modal"
+                                    class="inline-flex items-center gap-2 text-primary font-semibold text-base hover:underline underline-offset-4 transition-colors">
+                                    Ler tudo
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                        stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                </button>
                             </div>
                             <div class="relative reveal delay-200 mt-10 lg:mt-0">
                                 <img src="assets/elis-5.jpg" alt="Meu Propósito - Elis Fonsêca"
@@ -1174,6 +1199,58 @@
             class="bg-white text-primary p-5 rounded-full shadow-xl hover:scale-110 active:scale-95 transition-all flex items-center justify-center border border-black/5 pointer-events-auto">
             <i data-lucide="help-circle" class="w-8 h-8" stroke-width="1.5"></i>
         </button>
+    </div>
+
+    <!-- Modal Sobre Mim -->
+    <div id="sobre-modal" class="fixed inset-0 z-[200] flex items-end sm:items-center justify-center hidden" role="dialog" aria-modal="true" aria-labelledby="sobre-modal-title">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="sobre-modal-overlay"></div>
+        <div class="relative z-10 bg-white w-full sm:max-w-2xl sm:mx-6 sm:rounded-[2.5rem] rounded-t-[2rem] shadow-2xl flex flex-col max-h-[92dvh] sm:max-h-[85vh] animate-fade-in">
+            <!-- Header -->
+            <div class="flex items-center justify-between px-7 pt-6 pb-4 border-b border-black/5 shrink-0">
+                <h3 id="sobre-modal-title" class="font-serif text-xl font-bold text-text-main">Sobre mim</h3>
+                <button id="btn-sobre-modal-close"
+                    class="p-2 text-text-muted hover:text-primary bg-bg rounded-full transition-colors"
+                    aria-label="Fechar">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 6 6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <!-- Body scrollável -->
+            <div class="overflow-y-auto px-7 py-6 space-y-5 text-base text-text-muted leading-relaxed">
+                <p>Sou psicóloga formada pela FEAD Minas desde 2012. Ao longo da minha trajetória profissional, atuei em diferentes áreas da Psicologia, como Recursos Humanos e Psicologia Social, experiências que ampliaram meu olhar sensível para os diversos contextos da vida humana. Foi também nesse caminho que me especializei em Intervenção Psicossocial no Contexto das Políticas Públicas pelo Centro Universitário UNA, fortalecendo ainda mais minha compreensão sobre o cuidado emocional e as relações humanas.</p>
+                <p>Em 2016, iniciei minha atuação clínica em uma instituição sem fins lucrativos voltada ao acolhimento de mulheres e crianças em situação de violência. Foi nesse espaço que descobri, de forma ainda mais profunda, o poder transformador da escuta clínica. Desde então, passei a me dedicar intensamente à clínica psicológica, realizando especialização em Terapia Cognitivo-Comportamental (TCC) pelo Centro Universitário Amparense – UNIFIA, além de constantes cursos e atualizações na área.</p>
+                <p>Ao longo dessa caminhada, encontrei na Terapia Cognitivo-Comportamental um caminho potente e acolhedor para ajudar mulheres e mães a ressignificarem suas histórias, fortalecerem sua autoestima, desenvolverem autoconhecimento e aprenderem a cuidar de si com mais leveza e compaixão.</p>
+                <p>Além da minha atuação profissional, também sou mãe, esposa, filha e uma mulher em constante construção, assim como cada mulher que acolho na clínica. Essa vivência pessoal me permite compreender, de maneira mais humana e real, os desafios da vida feminina e da maternidade, para além das idealizações e expectativas muitas vezes impostas às mulheres.</p>
+                <p>Atuo de forma online, oferecendo um espaço seguro, acolhedor e livre de julgamentos para mulheres que enfrentam questões como ansiedade, autoestima, depressão, sobrecarga emocional, autoconhecimento e os desafios da maternidade.</p>
+                <p>Além do consultório, compartilho reflexões nas redes sociais, porque acredito que a psicologia precisa estar acessível e presente no cotidiano, promovendo cuidado, informação e acolhimento também fora da terapia.</p>
+                <p>Será um prazer caminhar com você nesse processo de cuidado, autoconhecimento e transformação. Estou aqui e te aguardo para iniciarmos essa jornada.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Propósito -->
+    <div id="proposito-modal" class="fixed inset-0 z-[200] flex items-end sm:items-center justify-center hidden" role="dialog" aria-modal="true" aria-labelledby="proposito-modal-title">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="proposito-modal-overlay"></div>
+        <div class="relative z-10 bg-white w-full sm:max-w-2xl sm:mx-6 sm:rounded-[2.5rem] rounded-t-[2rem] shadow-2xl flex flex-col max-h-[92dvh] sm:max-h-[85vh] animate-fade-in">
+            <div class="flex items-center justify-between px-7 pt-6 pb-4 border-b border-black/5 shrink-0">
+                <h3 id="proposito-modal-title" class="font-serif text-xl font-bold text-text-main">Meu propósito</h3>
+                <button id="btn-proposito-modal-close"
+                    class="p-2 text-text-muted hover:text-primary bg-bg rounded-full transition-colors"
+                    aria-label="Fechar">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 6 6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="overflow-y-auto px-7 py-6 space-y-5 text-base text-text-muted leading-relaxed">
+                <p>Acredito na força de transformação que existe em cada mulher, mesmo nos momentos em que ela parece não conseguir enxergá-la. Meu propósito é oferecer um espaço de acolhimento, escuta e cuidado, onde você possa se sentir segura para compreender sua história, reconhecer seus sentimentos e reconstruir sua relação consigo mesma com mais gentileza e consciência.</p>
+                <p>Ao longo da minha trajetória profissional e pessoal, compreendi que muitas mulheres carregam dores silenciosas, sobrecargas emocionais e cobranças constantes. Por isso, meu trabalho é caminhar ao seu lado de forma humana e acolhedora, ajudando você a organizar pensamentos, desenvolver autonomia emocional, fortalecer sua autoestima e construir, gradualmente, uma vida com mais equilíbrio, leveza e sentido.</p>
+                <p>Acredito que a terapia é um espaço de transformação real, não de perfeição, mas de consciência, autocuidado e reconexão com quem você verdadeiramente é.</p>
+            </div>
+        </div>
     </div>
 
     <!-- Modal TCC -->

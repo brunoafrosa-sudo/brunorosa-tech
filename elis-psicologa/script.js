@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     init(initChat);
     init(initContactForm);
     init(initWhatsAppLinks);
+    init(initSobreModal);
+    init(initPropositoModal);
     
     // Initialize Lucide Icons
     try {
@@ -188,10 +190,10 @@ function initMobileMenu() {
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
+            if (!targetId || !targetId.startsWith('#') || targetId === '#') return;
+            e.preventDefault();
+
             const target = document.querySelector(targetId);
             if (target) {
                 const navHeight = 80;
@@ -251,4 +253,34 @@ function initContactForm() {
         form.reset();
         window.open(url, '_blank', 'noopener,noreferrer');
     });
+}
+
+// ── Modal factory ──
+function initModal(modalId, overlayId, btnOpenId, btnCloseId) {
+    const modal   = document.getElementById(modalId);
+    const overlay = document.getElementById(overlayId);
+    const btnOpen = document.getElementById(btnOpenId);
+    const btnClose = document.getElementById(btnCloseId);
+
+    if (!modal || !btnOpen) return;
+
+    const open  = () => { modal.classList.remove('hidden'); document.body.style.overflow = 'hidden'; };
+    const close = () => { modal.classList.add('hidden');    document.body.style.overflow = ''; };
+
+    btnOpen.addEventListener('click', open);
+    btnClose.addEventListener('click', close);
+    overlay.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) close();
+    });
+}
+
+// ── Modal Sobre Mim ──
+function initSobreModal() {
+    initModal('sobre-modal', 'sobre-modal-overlay', 'btn-sobre-modal', 'btn-sobre-modal-close');
+}
+
+// ── Modal Propósito ──
+function initPropositoModal() {
+    initModal('proposito-modal', 'proposito-modal-overlay', 'btn-proposito-modal', 'btn-proposito-modal-close');
 }
